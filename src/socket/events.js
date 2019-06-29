@@ -19,9 +19,11 @@ function eventHandlers(App) {
     },
 
     attendee : function(msg){
-      msg=JSON.parse(msg);
-      if( !msg.error){
-        App.setState({attendee : msg})
+      let attendee=JSON.parse(msg);
+      if( !attendee.error){
+        attendee.wants = !attendee.wants[0] === 'null' ? attendee.wants : [];
+        attendee.haves = !attendee.wants[0] === 'null' ? attendee.wants : [];
+        App.setState({attendee : attendee})
       }else{
         App.sendAlert(msg);
       }

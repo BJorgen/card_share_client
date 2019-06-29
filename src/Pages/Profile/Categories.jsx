@@ -19,11 +19,10 @@ class Categories extends Component {
   
   render() {
     const { categories, subCategories } = this.props;
-
+    const component = this;
 
     function submitCategories(event) {
       event.preventDefault();
-      console.log('event cought')
       //const company = event.target['company'].value
      /* const position = event.target['position'].value
       const phone_number = event.target['phone_number'].value
@@ -32,14 +31,38 @@ class Categories extends Component {
       const updatedProfile = {...profile, company, position, phone_number, email_address, tagline}*/
      // actions.updateProfile(updatedProfile)
     }
-
-    function haveCategoryOnChange(id){
-      if(this.state.haves.include(id)){
-        if
+    
+    function getCheckboxButton(id, action){
+      const checked = component.state.haves.includes(id)
+      if(component.state.haves.length > 4 && !checked){
+        return <Form.Check  name={id} type='checkbox' disabled onClick={action} inline />
+      }else{
+        return <Form.Check  name={id} type='checkbox' onClick={action} inline />
       }
     }
 
-    console.log(categories);
+    function haveCategoryOnChange(event){
+      const id = event.target.name;
+      let haves = component.state.haves;
+      if(event.target.checked){
+        haves.push(id);
+      }else{
+        haves = haves.filter(item => item !== id);
+      }
+      component.setState({haves : haves}, () => console.log('haves from  cb', component.state.haves));
+    }
+
+    function wantCategoryOnChange(event){
+      let wants = component.state.wants;
+      const id = event.target.name;
+      if(event.target.checked){
+        wants.push(id);
+      }else{
+        wants = wants.filter(item => item !== id);
+      }
+      component.setState({wants : wants}, () => console.log('wants from  cb', component.state.wants));
+    }
+
     return (
       <Accordion>
         <Form onSubmit={submitCategories}>
@@ -63,16 +86,17 @@ class Categories extends Component {
                     <Form.Text>Haves</Form.Text>                     
                   </Col>
                 </Row>
-              {subCategories.filter((subCategory) => subCategory.category_id === category.id).map(subCategory => (             
+              {subCategories.filter(subCategory => subCategory.category_id === category.id).map((subCategory,component) => (             
                 <Row>
                   <Col xs={6} md={6}>
                     {subCategory.name}
                   </Col>
                   <Col xs={3} md={3}>
-                      <Form.Check type='checkbox' onClick={haveCategoryOnChange} inline id={`inline-${'checkbox'}-1`} />
+                  {getCheckboxButton(subCategory.id, haveCategoryOnChange)}
+                      <Form.Check className="disabled" name={subCategory.id} type='checkbox' onClick={haveCategoryOnChange} inline />
                   </Col>
                   <Col xs={3} md={3}>
-                      <Form.Check type='checkbox' disabled inline id={`inline-${'checkbox'}-2`} />                      
+                      <Form.Check name={subCategory.id}  type='checkbox' onClick={wantCategoryOnChange} inline/>                      
                   </Col>
                 </Row>
               ))}
