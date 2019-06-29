@@ -85,6 +85,13 @@ function eventHandlers(App) {
 
     is_authorized : function(msg){
       App.setState({loggedIn : msg});
+    },
+
+    do : function(action){
+      if(action === 'RECONNECT'){
+        App.state.connection.disconnect();
+        App.connect();
+      }
     }
   }
 }
