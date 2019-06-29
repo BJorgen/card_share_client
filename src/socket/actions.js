@@ -2,7 +2,7 @@ module.exports = function(App) {
   return {
 
     initData(){
-      this.getUser();
+      this.getAttendee();
       this.getCategories();
       this.getAttendees();
     },
