@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Container from 'react-bootstrap/Container';
-import LoginForm from '../../Common/LoginForm.jsx';
+import ProfileForm from '../Profile/ProfileForm.jsx';
 
 class MessagesPage extends Component {
 
@@ -11,7 +11,7 @@ class MessagesPage extends Component {
 
         Temp Storage for Login Form!
         <Container>
-          <LoginForm categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
+          <ProfileForm categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
         </Container>
       </div>
     );

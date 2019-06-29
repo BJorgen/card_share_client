@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 // import CardActions from './Partials/CardActions.jsx';
 // import CardIcons from './Partials/CardIcons.jsx';
-import CardInterests from './Partials/CardInterests.jsx';
-import CardContact from './Partials/CardContact.jsx';
+import CardInterests from '../Partials/CardInterests.jsx';
+// import CardContact from './Partials/CardContact.jsx';
 import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
 
-class SharedCard extends Component {
+class ConnectedCard extends Component {
 
   render(){
     const profile = this.props.profile;
@@ -18,7 +18,7 @@ class SharedCard extends Component {
       <Card>
         <Card.Header>
           <Card.Title>
-            {profile.first_name} {profile.last_name}
+            {profile.first_name} {/* {profile.last_name} */}
           </Card.Title>
           {/* <CardIcons profile={profile}/> */}
         </Card.Header>
@@ -35,7 +35,7 @@ class SharedCard extends Component {
             </Row>
           </Container>
 
-          <CardContact profile={profile}/>
+          {/* <CardContact profile={profile} hidden/> */}
 
           <Card.Text>
             {"This is my tagline " + profile.tagline}
@@ -51,5 +51,5 @@ class SharedCard extends Component {
   }
 }
 
-export default SharedCard;
+export default ConnectedCard;
 
