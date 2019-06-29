@@ -37,7 +37,7 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-          <Home {...routeProps}/>
+          <Home {...routeProps} event={this.props.event} socket={this.props.socket}/>
         )}/>
       </Switch>
     );
@@ -46,7 +46,7 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-              <Home {...routeProps}/>
+              <Home {...routeProps} event={this.props.event} socket={this.props.socket}/>
             )}/>
       </Switch>
     );

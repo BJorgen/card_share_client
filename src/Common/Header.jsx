@@ -1,30 +1,11 @@
 import React, {Component} from 'react';
-import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { Navbar} from 'react-bootstrap';
-import OAuth from './Oauth.jsx'
+import LoginButton from './Partials/Oauth/LoginButton.jsx'
 
 
 class Header extends Component {
-
-  getOauth(){
-    console.log('header props', this.props)
-    if(this.props.user){
-      return (<Button onClick={this.props.logOut}> LogOut </Button>)
-    }
-    else if (this.props.socket){
-      return (
-        <OAuth
-        provider='linkedin'
-        socket={this.props.socket}
-        event= {this.props.event}
-      />
-      )
-    }else{
-      return( <Button> Login </Button>)
-    }
-  }
 
   render(){
     return (
@@ -39,7 +20,7 @@ class Header extends Component {
             </span>
           </Col>
           <Col xs={3} md={3}>
-            {this.getOauth()}
+            <LoginButton  socket={this.props.socket} event= {this.props.event}/>
           </Col>
 
       </Navbar>
