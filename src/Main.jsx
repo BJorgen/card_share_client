@@ -5,11 +5,13 @@ import ProfilePage from './Pages/Profile/ProfilePage.jsx';
 import NetworkPage from './Pages/Network/NetworkPage.jsx';
 import MessagePage from './Pages/Messages/MessagesPage.jsx';
 import ContactsPage from './Pages/Contacts/ContactsPage.jsx';
+import Home         from './Pages/Home/Home.jsx'
 
 class Main extends Component {
   render(){
+    if(this.props.profile && this.props.categories){
     return (
-      <main style={{ minHeight: '70vh' }}>
+      <main style={{ minHeight: '70vh' }}>        
         <Switch>
           <Route path="/profile" render={(routeProps) => (
             <ProfilePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
@@ -30,6 +32,25 @@ class Main extends Component {
         </Switch>
       </main>
     );
+  }else if(this.props.loggedIn){
+    //TODO return 'loading...' page
+    return(
+      <Switch>
+        <Route path="/" render={(routeProps) => (
+          <Home {...routeProps}/>
+        )}/>
+      </Switch>
+    );
+  }else{
+     //TODO return event  specific page
+    return(
+      <Switch>
+        <Route path="/" render={(routeProps) => (
+              <Home {...routeProps}/>
+            )}/>
+      </Switch>
+    );
+  }
   }
 }
 
