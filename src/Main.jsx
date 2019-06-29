@@ -18,7 +18,7 @@ class Main extends Component {
             <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
           )}/>
           <Route path="/messages" render={(routeProps) => (
-            <MessagePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} user={this.props.user}/>
+            <MessagePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
           )}/>
           <Route path="/contacts" component={Contacts} />
           <Route path="/contacts" render={<Contacts/>}/>

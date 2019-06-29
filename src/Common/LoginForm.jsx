@@ -13,8 +13,8 @@ import Categories from '../Pages/Profile/Categories.jsx';
 class LoginForm extends Component {
 
   render(){
-    const user = this.props.user;
-    console.log(user)
+    const profile = this.props.profile;
+    console.log(profile)
     return (
 
       <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
@@ -28,7 +28,7 @@ class LoginForm extends Component {
               <Row>
                 <Col xs={9} md={9}>
                   <Card.Title>
-                    {user.first_name} {user.last_name}
+                    {profile.first_name} {profile.last_name}
                   </Card.Title>
                 </Col>
                 <Col xs={3} md={3}>
@@ -42,14 +42,14 @@ class LoginForm extends Component {
               <Container>
                 <Row>
                   <Col xs={5} md={5}>
-                    <Image src="https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png" rounded width={100} height={100} alt="100x100"/>
+                    <Image src={profile.photo} rounded width={100} height={100} alt="100x100"/>
                   </Col>
                   <Col xs={7} md={7}>
                     <Form.Group as={Row} controlId="formPlaintextEmail">
-                        <Form.Control type="position" placeholder="Position"/>
                         <Form.Control type="company" placeholder="Company"/>
+                        <Form.Control type="position" placeholder="Position"/>
                         <Form.Control type="phone" placeholder="Phone Number"/>
-                        <Form.Control type="email" placeholder="Email"/>
+                        <Form.Control type="email" placeholder="Email" defaultValue={profile.email_address}/>
                     </Form.Group>
                   </Col>
                 </Row>
@@ -78,17 +78,16 @@ export default LoginForm;
 
 
 
-
-// "id":1000003
-// "user_id":1000003
-// "event_id":1000001
+// Show profile
+// image
 // "email_address":"gi@gmail.com"
 // "first_name":"Gi"
 // "last_name":"Gilast"
-// "position":null
-// "company":null
+
 // "linkedin-link":"https://www.linkedin.com"
+
+// Prompt profile for:
+
 // "tagline":null
-// "created_at":"2019-06-26T20:22:13.722Z"
 // "haves":["1000008","1000010","1000016","1000019","1000023"]
 // "wants":["1000008","1000010","1000016","1000019","1000023"]

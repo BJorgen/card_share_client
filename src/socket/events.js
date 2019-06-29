@@ -13,7 +13,7 @@ function eventHandlers(App) {
   return {
 
     user : function(msg){
-      App.sendAlert(msg);
+      // App.sendAlert(msg);
       msg=JSON.parse(msg);
       App.setState({user : msg})
     },
@@ -28,13 +28,13 @@ function eventHandlers(App) {
     },
 
     attendees : function(msg){
-      App.sendAlert(msg);
+      // App.sendAlert(msg);
       msg=JSON.parse(msg);
       App.setState({attendees : msg})
     },
     
     categories : function(msg){
-      App.sendAlert(msg);
+      // App.sendAlert(msg);
       msg=JSON.parse(msg);
       App.setState({categories: msg.categories, subCategories: msg.subCategories});
     },
