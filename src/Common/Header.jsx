@@ -66,8 +66,8 @@ function Header(props) {
           </Typography>
 
           <div className={classes.grow} />
-          <IconButton aria-label="Show 17 new notifications" color="inherit">
-            <Badge badgeContent={17} color="secondary" onClick={props.showNotifications}>
+          <IconButton aria-label="Show 17 new notifications" color="inherit" onClick={props.showNotifications}>
+            <Badge badgeContent={17} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -79,11 +79,11 @@ function Header(props) {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-              <MenuIcon />
+              <MenuIcon className={classes.menuButton}/>
           </IconButton>
-          <IconButton>
+
             <LoginButton  socket={props.socket} event= {props.event}/>
-          </IconButton>
+
         </Toolbar>
       </AppBar>
       {renderMenu}
