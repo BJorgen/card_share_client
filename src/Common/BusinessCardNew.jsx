@@ -34,7 +34,7 @@ class BusinessCard extends Component {
           <Container>
             <Row>
               <Col xs={4} md={4}>
-                <Image src="https://maxcdn.icons8.com/Share/icon/Users//user_male_circle_filled1600.png" rounded width={120} height={120} alt="120x120"/>
+                <Image src={attendee.photo} rounded width={120} height={120} alt="120x120"/>
               </Col>
               <Col xs={8} md={8}>
                 <CardInterests attendee={attendee}/>
@@ -71,6 +71,6 @@ export default BusinessCard;
 // "company":null
 // "linkedin-link":"https://www.linkedin.com"
 // "tagline":null
-// "created_at":"2019-06-26T20:22:13.722Z"
+
 // "haves":["1000008","1000010","1000016","1000019","1000023"]
 // "wants":["1000008","1000010","1000016","1000019","1000023"]

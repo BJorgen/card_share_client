@@ -8,7 +8,7 @@ import Tab from 'react-bootstrap/Tab'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import CategoriesSelector from '../Pages/Profile/CategoriesSelector.jsx';
+import Categories from './Categories.jsx';
 
 class LoginForm extends Component {
 
@@ -66,7 +66,7 @@ class LoginForm extends Component {
 
         <Tab eventKey="topics" title="Topic Selector">
           Select Some Topics of Interest Here!
-          <CategoriesSelector categories={this.props.categories} subCategories={this.props.subCategories} />
+          <Categories categories={this.props.categories} subCategories={this.props.subCategories} />
         </Tab>
       </Tabs>
     );

@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import ProfilePage from './Pages/Profile/ProfilePage.jsx';
 import NetworkPage from './Pages/Network/NetworkPage.jsx';
 import MessagePage from './Pages/Messages/MessagesPage.jsx';
-import Contacts from './Pages/Contacts/Contacts.jsx';
+import ContactsPage from './Pages/Contacts/ContactsPage.jsx';
 
 class Main extends Component {
   render(){
@@ -20,8 +20,9 @@ class Main extends Component {
           <Route path="/messages" render={(routeProps) => (
             <MessagePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
           )}/>
-          <Route path="/contacts" component={Contacts} />
-          <Route path="/contacts" render={<Contacts/>}/>
+          <Route path="/contacts" render={(routeProps) => (
+            <ContactsPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
+          )}/>
 
           <Route exact path="/" render={(routeProps) => (
             <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>

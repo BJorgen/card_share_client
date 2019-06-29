@@ -4,7 +4,7 @@ import ConnectedCard from '../../Common/ConnectedCard.jsx';
 import SharedCard from '../../Common/SharedCard.jsx';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Categories from './Categories.jsx';
+import CategoriesSelector from './CategoriesSelector.jsx';
 
 class ProfilePage extends Component {
 
@@ -31,7 +31,7 @@ class ProfilePage extends Component {
         </Tabs>
 
         <div>
-          <Categories categories={this.props.categories} subCategories={this.props.subCategories} />
+          <CategoriesSelector categories={this.props.categories} subCategories={this.props.subCategories} />
         </div>
       </div>
     );
