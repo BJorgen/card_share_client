@@ -9,25 +9,32 @@ import Home         from './Pages/Home/Home.jsx'
 
 class Main extends Component {
   render(){
-    if(this.props.profile && this.props.categories){
+    const { profile, categories, subCategories, actions, attendees, event, socket } = this.props;
+    const isProfileSetUp = profile && profile.tagline && (profile.want || profile.have);
+
+    if(profile && categories && !isProfileSetUp){
+      return (
+        <div>You need to edit your profile!</div>
+      )
+    } else if(profile && categories){
     return (
       <main style={{ minHeight: '70vh' }}>        
         <Switch>
           <Route path="/profile" render={(routeProps) => (
-            <ProfilePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
+            <ProfilePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile}/>
           )}/>
           <Route path="/network" render={(routeProps) => (
-            <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
+            <NetworkPage {...routeProps} actions={actions} attendees={attendees}/>
           )}/>
           <Route path="/messages" render={(routeProps) => (
-            <MessagePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
+            <MessagePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile}/>
           )}/>
           <Route path="/contacts" render={(routeProps) => (
-            <ContactsPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
+            <ContactsPage {...routeProps} actions={actions} attendees={attendees}/>
           )}/>
 
           <Route exact path="/" render={(routeProps) => (
-            <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
+            <NetworkPage {...routeProps} actions={actions} attendees={attendees}/>
           )}/>
         </Switch>
       </main>
@@ -37,7 +44,7 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-          <Home {...routeProps} event={this.props.event} socket={this.props.socket}/>
+          <Home {...routeProps} event={event} socket={socket}/>
         )}/>
       </Switch>
     );
@@ -46,7 +53,7 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-              <Home {...routeProps} event={this.props.event} socket={this.props.socket}/>
+              <Home {...routeProps} event={event} socket={socket}/>
             )}/>
       </Switch>
     );
