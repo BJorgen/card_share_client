@@ -19,10 +19,10 @@ class ProfileForm extends Component {
       event.preventDefault();
       const company = event.target['company'].value
       const position = event.target['position'].value
-      const phone = event.target['phone'].value
+      const phone_number = event.target['phone_number'].value
       const email_address = event.target['email_address'].value
       const tagline = event.target['tagline'].value
-      const updatedProfile = {...profile, company, position, phone, email_address, tagline}
+      const updatedProfile = {...profile, company, position, phone_number, email_address, tagline}
       actions.updateProfile(updatedProfile)
     }
 
@@ -57,9 +57,9 @@ class ProfileForm extends Component {
 
                     <Form.Group as={Row} controlId="Information">
                         <Form.Control name="company" placeholder="Company" defaultValue={profile.company}/>
-                        <Form.Control name="position" placeholder="Position" defaultValue={profile.name}/>
-                        <Form.Control type="phone" name="phone" placeholder="Phone Number" defaultValue={profile.phone}/>
-                        <Form.Control type="email" name="email_address" placeholder="Email" defaultValue={profile.email_address}/>
+                        <Form.Control name="position" placeholder="Position" defaultValue={profile.position}/>
+                        <Form.Control name="phone_number" placeholder="Phone Number" defaultValue={profile.phone_number}/>
+                        <Form.Control name="email_address" placeholder="Email" defaultValue={profile.email_address}/>
                     </Form.Group>
 
                   </Col>
@@ -67,7 +67,7 @@ class ProfileForm extends Component {
               </Container>
 
               <Form.Group as={Row} controlId="Tagline">
-                <Form.Control type="text" name="tagline" placeholder="Enter Tagline Here!"/>
+                <Form.Control name="tagline" placeholder="Enter Tagline Here!" defaultValue={profile.tagline}/>
               </Form.Group>
 
               <Button as="input" type="submit" value="Submit" size="sm"/>
