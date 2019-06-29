@@ -9,19 +9,20 @@ import Contacts from './Pages/Contacts/Contacts.jsx';
 class Main extends Component {
   render(){
     return (
-    
       <main style={{ minHeight: '70vh' }}>
         <Switch>
           <Route path="/profile" render={(routeProps) => (
-            <ProfilePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} user={this.props.user}/>
+            <ProfilePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
+          )}/>
+          <Route path="/network" render={(routeProps) => (
+            <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
           )}/>
           <Route path="/messages" render={(routeProps) => (
             <MessagePage {...routeProps} categories={this.props.categories} subCategories={this.props.subCategories} user={this.props.user}/>
           )}/>
           <Route path="/contacts" component={Contacts} />
-          <Route path="/network" render={(routeProps) => (
-            <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
-          )}/>
+          <Route path="/contacts" render={<Contacts/>}/>
+
           <Route exact path="/" render={(routeProps) => (
             <NetworkPage {...routeProps} actions={this.props.actions} attendees={this.props.attendees}/>
           )}/>
