@@ -81,7 +81,7 @@ class ProfileForm extends Component {
 
         <Tab eventKey="topics" title="Topic Selector">
           Select Some Topics of Interest Here!
-          <Categories categories={categories} subCategories={subCategories} />
+          <Categories categories={categories} subCategories={subCategories} profile={profile}/>
         </Tab>
       </Tabs>
     );
