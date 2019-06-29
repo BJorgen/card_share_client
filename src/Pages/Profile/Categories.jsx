@@ -34,7 +34,9 @@ class Categories extends Component {
     }
 
     function haveCategoryOnChange(id){
-      console.log('Actions!!!')
+      if(this.state.haves.include(id)){
+        if
+      }
     }
 
     console.log(categories);
