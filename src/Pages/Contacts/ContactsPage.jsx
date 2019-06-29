@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import BusinessCard from '../../Common/BusinessCard.jsx';
-import CardDeck from 'react-bootstrap/CardDeck'
 
 class ContactsPage extends Component {
 
@@ -8,11 +7,6 @@ class ContactsPage extends Component {
     return (
       <div>
         Hello from the ContactsPage!!
-        <CardDeck>
-          <BusinessCard/>
-          <BusinessCard/>
-          <BusinessCard/>
-        </CardDeck>
       </div>
     );
   }

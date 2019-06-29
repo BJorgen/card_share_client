@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import BusinessCard from '../../Common/BusinessCardNew.jsx';
+import BusinessCard from '../../Common/BusinessCard.jsx';
 import CardDeck from 'react-bootstrap/CardDeck'
 
 class NetworkPage extends Component {
