@@ -10,17 +10,19 @@ import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 import Categories from './Categories.jsx';
 
-class LoginForm extends Component {
+class ProfileForm extends Component {
 
   render(){
-    const profile = this.props.profile;
-    console.log(profile)
+    const {profile, actions} = this.props;
+
+    function submitProfile(event) {
+      event.preventDefault();
+      actions.updateProfile()
+    }
+
     return (
 
       <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-        <Tab eventKey="home" title="Home" disabled>
-          
-        </Tab>
 
         <Tab eventKey="profile" title="Login Profile"> 
           <Card>
@@ -38,19 +40,26 @@ class LoginForm extends Component {
             </Card.Header>
 
             <Card.Body>
-              <Form>
+
+
+
+              <Form onSubmit={submitProfile}>
               <Container>
                 <Row>
                   <Col xs={5} md={5}>
                     <Image src={profile.photo} rounded width={100} height={100} alt="100x100"/>
                   </Col>
                   <Col xs={7} md={7}>
+
+
                     <Form.Group as={Row} controlId="formPlaintextEmail">
                         <Form.Control type="company" placeholder="Company"/>
                         <Form.Control type="position" placeholder="Position"/>
                         <Form.Control type="phone" placeholder="Phone Number"/>
                         <Form.Control type="email" placeholder="Email" defaultValue={profile.email_address}/>
                     </Form.Group>
+
+
                   </Col>
                 </Row>
               </Container>
@@ -59,7 +68,11 @@ class LoginForm extends Component {
                 <Form.Control type="tagline" placeholder="Enter Tagline Here!"/>
               </Form.Group>
 
+              <Button as="input" type="submit" value="Submit" size="sm"/>
               </Form>
+
+
+
             </Card.Body>
           </Card>
         </Tab>
@@ -73,7 +86,7 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+export default ProfileForm;
 
 
 

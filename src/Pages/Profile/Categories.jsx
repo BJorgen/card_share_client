@@ -10,6 +10,7 @@ import Col from 'react-bootstrap/Col'
 class Categories extends Component {
   render() {
     const { categories, subCategories } = this.props;
+    console.log(categories);
     return (
       <Accordion>
         {categories.map((category) => (

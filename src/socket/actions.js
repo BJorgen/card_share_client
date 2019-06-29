@@ -59,6 +59,11 @@ module.exports = function(App) {
       this.setState({ modalShow: true });
     },
 
+
+    updateProfile(){
+      console.log("I am updating my Profile!!!")
+    },
+
     loadDataIfLoggedIn(){
       if(! (App.state.connection && App.state.loggedIn)){
         return;
