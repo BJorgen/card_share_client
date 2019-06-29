@@ -18,18 +18,13 @@ class Categories extends Component {
   }
   
   render() {
-    const { categories, subCategories } = this.props;
+    const { categories, subCategories, actions } = this.props;
     const component = this;
 
     function submitCategories(event) {
       event.preventDefault();
-      //const company = event.target['company'].value
-     /* const position = event.target['position'].value
-      const phone_number = event.target['phone_number'].value
-      const email_address = event.target['email_address'].value
-      const tagline = event.target['tagline'].value
-      const updatedProfile = {...profile, company, position, phone_number, email_address, tagline}*/
-     // actions.updateProfile(updatedProfile)
+      const interests = { wants: component.state.wants, haves: component.state.haves}
+      actions.updateInterests(interests)
     }
     
     function getCheckboxButton(id, action){

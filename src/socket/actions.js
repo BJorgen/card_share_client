@@ -68,7 +68,7 @@ module.exports = function(App) {
     updateInterests(interests){
       console.log("I am updating my Interests!!!")
       console.log("INTERESTS: ", interests)
-      App.state.connection.emit('update_interests', JSON.stringigy(interests));
+      App.state.connection.emit('update_interests', JSON.stringify(interests));
     },
 
     loadDataIfLoggedIn(){
