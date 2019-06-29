@@ -1,34 +1,3 @@
-// import React, {Component} from 'react';
-// import Col from 'react-bootstrap/Col'
-// import { Navbar} from 'react-bootstrap';
-// import LoginButton from './Partials/Oauth/LoginButton.jsx'
-
-
-// class Header extends Component {
-
-//   render(){
-//     return (
-//       <Navbar bg="light" sticky="top">
-
-//           <Col xs={6} md={6}>
-//             <p>Lighthouse Labs Demo Day</p>
-//           </Col>
-//           <Col xs={3} md={3}>
-//             <span onClick={this.props.showNotifications} id="notification-button" className="fa-stack fa-2x has-badge" data-count="4">
-//               <i className="fa fa-bell fa-stack-1x xfa-inverse" data-count="4b"></i>
-//             </span>
-//           </Col>
-//           <Col xs={3} md={3}>
-//             <LoginButton  socket={this.props.socket} event= {this.props.event}/>
-//           </Col>
-
-//       </Navbar>
-//     );
-//   }
-// }
-
-// export default Header;
-
 import React, {Component} from 'react';
 import LoginButton from './Partials/Oauth/LoginButton.jsx'
 import { makeStyles } from "@material-ui/core/styles";
@@ -39,6 +8,8 @@ import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import MenuIcon from '@material-ui/icons/Menu';
+import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -97,7 +68,7 @@ function Header(props) {
           <div className={classes.grow} />
           <IconButton aria-label="Show 17 new notifications" color="inherit">
             <Badge badgeContent={17} color="secondary" onClick={props.showNotifications}>
-              <i className="fa fa-bell fa-stack-1x xfa-inverse"></i>
+              <NotificationsIcon />
             </Badge>
           </IconButton>
           <IconButton
@@ -108,9 +79,11 @@ function Header(props) {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-              <i className="fas fa-user-circle"></i>
+              <MenuIcon />
           </IconButton>
-          <LoginButton  socket={props.socket} event= {props.event}/>
+          <IconButton>
+            <LoginButton  socket={props.socket} event= {props.event}/>
+          </IconButton>
         </Toolbar>
       </AppBar>
       {renderMenu}
