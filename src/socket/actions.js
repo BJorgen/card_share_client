@@ -60,8 +60,15 @@ module.exports = function(App) {
     },
 
 
-    updateProfile(){
-      console.log("I am updating my Profile!!!")
+    updateProfile(updatedProfile){
+      console.log("PROFILE SENT TO SERVER: ", updatedProfile)
+      App.state.connection.emit('update_profile', JSON.stringify(updatedProfile));
+    },
+
+    updateInterests(interests){
+      console.log("I am updating my Interests!!!")
+      console.log("INTERESTS: ", interests)
+      App.state.connection.emit('update_interests', JSON.stringigy(interests));
     },
 
     loadDataIfLoggedIn(){

@@ -13,11 +13,17 @@ import Categories from './Categories.jsx';
 class ProfileForm extends Component {
 
   render(){
-    const {profile, actions} = this.props;
+    const {profile, actions, categories, subCategories} = this.props;
 
     function submitProfile(event) {
       event.preventDefault();
-      actions.updateProfile()
+      const company = event.target['company'].value
+      const position = event.target['position'].value
+      const phone = event.target['phone'].value
+      const email_address = event.target['email_address'].value
+      const tagline = event.target['tagline'].value
+      const updatedProfile = {...profile, company, position, phone, email_address, tagline}
+      actions.updateProfile(updatedProfile)
     }
 
     return (
@@ -26,15 +32,13 @@ class ProfileForm extends Component {
 
         <Tab eventKey="profile" title="Login Profile"> 
           <Card>
+
             <Card.Header>
               <Row>
                 <Col xs={9} md={9}>
                   <Card.Title>
                     {profile.first_name} {profile.last_name}
                   </Card.Title>
-                </Col>
-                <Col xs={3} md={3}>
-                  <Button as="input" type="submit" value="Submit" size="sm"/>
                 </Col>
               </Row>
             </Card.Header>
@@ -51,21 +55,19 @@ class ProfileForm extends Component {
                   </Col>
                   <Col xs={7} md={7}>
 
-
-                    <Form.Group as={Row} controlId="formPlaintextEmail">
-                        <Form.Control type="company" placeholder="Company"/>
-                        <Form.Control type="position" placeholder="Position"/>
-                        <Form.Control type="phone" placeholder="Phone Number"/>
-                        <Form.Control type="email" placeholder="Email" defaultValue={profile.email_address}/>
+                    <Form.Group as={Row} controlId="Information">
+                        <Form.Control name="company" placeholder="Company"/>
+                        <Form.Control name="position" placeholder="Position"/>
+                        <Form.Control type="phone" name="phone" placeholder="Phone Number"/>
+                        <Form.Control type="email" name="email_address" placeholder="Email" defaultValue={profile.email_address}/>
                     </Form.Group>
-
 
                   </Col>
                 </Row>
               </Container>
 
-              <Form.Group as={Row} controlId="formPlaintextEmail">
-                <Form.Control type="tagline" placeholder="Enter Tagline Here!"/>
+              <Form.Group as={Row} controlId="Tagline">
+                <Form.Control type="text" name="tagline" placeholder="Enter Tagline Here!"/>
               </Form.Group>
 
               <Button as="input" type="submit" value="Submit" size="sm"/>
@@ -79,7 +81,7 @@ class ProfileForm extends Component {
 
         <Tab eventKey="topics" title="Topic Selector">
           Select Some Topics of Interest Here!
-          <Categories categories={this.props.categories} subCategories={this.props.subCategories} />
+          <Categories categories={categories} subCategories={subCategories} />
         </Tab>
       </Tabs>
     );
