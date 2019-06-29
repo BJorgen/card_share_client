@@ -56,9 +56,9 @@ class ProfileForm extends Component {
                   <Col xs={7} md={7}>
 
                     <Form.Group as={Row} controlId="Information">
-                        <Form.Control name="company" placeholder="Company"/>
-                        <Form.Control name="position" placeholder="Position"/>
-                        <Form.Control type="phone" name="phone" placeholder="Phone Number"/>
+                        <Form.Control name="company" placeholder="Company" defaultValue={profile.company}/>
+                        <Form.Control name="position" placeholder="Position" defaultValue={profile.name}/>
+                        <Form.Control type="phone" name="phone" placeholder="Phone Number" defaultValue={profile.phone}/>
                         <Form.Control type="email" name="email_address" placeholder="Email" defaultValue={profile.email_address}/>
                     </Form.Group>
 
