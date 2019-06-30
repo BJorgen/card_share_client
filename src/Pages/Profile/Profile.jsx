@@ -5,7 +5,6 @@ import ConnectedCard from '../../Common/Cards/ConnectedCard.jsx';
 import SharedCard from '../../Common/Cards/SharedCard.jsx';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Categories from './Categories.jsx';
 
 class Profile extends Component {
 
@@ -17,7 +16,6 @@ class Profile extends Component {
 
     return (
       <div>
-        Hello from the ProfilePage!!
 
         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
           <Tab eventKey="home" title="Basic">
@@ -37,10 +35,6 @@ class Profile extends Component {
             <BusinessCard attendee={profile}/>
           </Tab>
         </Tabs>
-
-        <div>
-          <Categories profile={profile} categories={this.props.categories} subCategories={this.props.subCategories} />
-        </div>
       </div>
     );
   }

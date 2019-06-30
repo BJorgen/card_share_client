@@ -7,41 +7,23 @@ import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Button from '@material-ui/core/Button';
 import Categories from './Categories.jsx';
+import Profile from './Profile.jsx';
 
 class ProfilePage extends Component {
 
   render(){
-    console.log("From profile: ", this.props.profile.last_name);
-    const profile = this.props.profile;
-    const basicProfile = profile;
-    const connectedProfile = profile;
-
-
+    const { profile, categories, subCategories, actions } = this.props;
     return (
       <div>
         <h4>Attendee Profile</h4>
+
+        <Profile profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+
         <div>
           <Button href="/editprofile">
-            Link
+            Edit Profile
           </Button>
         </div>
-
-        <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-          <Tab eventKey="home" title="Basic">
-            <BasicCard profile={profile}/>
-            {/* <BusinessCard profile={profile}/> */}
-          </Tab>
-
-          <Tab eventKey="profile" title="Connected"> 
-            <ConnectedCard profile={profile}/>
-            {/* <BusinessCard profile={connectedProfile}/> */}
-          </Tab>
-
-          <Tab eventKey="topics" title="Shared">
-            <SharedCard profile={profile}/>
-            <BusinessCard attendee={profile}/>
-          </Tab>
-        </Tabs>
 
       </div>
     );
