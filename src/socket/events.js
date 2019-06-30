@@ -35,7 +35,7 @@ function eventHandlers(App) {
       App.setState({attendees : msg})
     },
 
-    update_attendee : function(msg){
+    broadcast_attendee : function(msg){
       const attendee = JSON.parse(msg);
       const attendees = App.state.attendees;
       if(attendees[attendee.id]){
@@ -43,6 +43,16 @@ function eventHandlers(App) {
         attendees[attendee.id].tagline = attendee.tagline;
       }else{
         attendees[attendee.id] = attendee;
+      }
+      App.setState({attendees : attendees})
+    },
+
+    broadcast_interests : function(msg){
+      const attendee = JSON.parse(msg);
+      const attendees = App.state.attendees;
+      if(attendees[attendee.id]){
+        attendees[attendee.id].haves = attendee.haves;
+        attendees[attendee.id].wants = attendee.wants;
       }
       App.setState({attendees : attendees})
     },
