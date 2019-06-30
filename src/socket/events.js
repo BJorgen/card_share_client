@@ -35,6 +35,18 @@ function eventHandlers(App) {
       App.setState({attendees : msg})
     },
 
+    update_attendee : function(msg){
+      const attendee = JSON.parse(msg);
+      const attendees = App.state.attendees;
+      if(attendees[attendee.id]){
+        attendees[attendee.id].id = attendee.id;
+        attendees[attendee.id].tagline = attendee.tagline;
+      }else{
+        attendees[attendee.id] = attendee;
+      }
+      App.setState({attendees : attendees})
+    },
+
     attendee_interests : function(msg){
       msg=JSON.parse(msg);
       const attendee = App.state.attendee;
