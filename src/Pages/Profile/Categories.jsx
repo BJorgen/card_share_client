@@ -27,9 +27,10 @@ class Categories extends Component {
       actions.updateInterests(interests)
     }
     
-    function getCheckboxButton(id, action){
-      const checked = component.state.haves.includes(id)
-      if(component.state.haves.length > 4 && !checked){
+    function getCheckboxButton(id, action, type){
+      const checked = component.state[type].includes("" + id)
+      console.log("Checked: ", checked)
+      if(component.state[type].length > 4 && !checked){
         return <Form.Check  name={id} type='checkbox' disabled onClick={action} inline />
       }else{
         return <Form.Check  name={id} type='checkbox' onClick={action} inline />
@@ -87,11 +88,10 @@ class Categories extends Component {
                     {subCategory.name}
                   </Col>
                   <Col xs={3} md={3}>
-                  {getCheckboxButton(subCategory.id, haveCategoryOnChange)}
-                      <Form.Check className="disabled" name={subCategory.id} type='checkbox' onClick={haveCategoryOnChange} inline />
+                    {getCheckboxButton(subCategory.id, haveCategoryOnChange, "haves")}
                   </Col>
                   <Col xs={3} md={3}>
-                      <Form.Check name={subCategory.id}  type='checkbox' onClick={wantCategoryOnChange} inline/>                      
+                    {getCheckboxButton(subCategory.id, wantCategoryOnChange, "wants")}                   
                   </Col>
                 </Row>
               ))}
