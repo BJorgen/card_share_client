@@ -29,7 +29,6 @@ class Categories extends Component {
     
     function getCheckboxButton(id, action, type){
       const checked = component.state[type].includes("" + id)
-      console.log("Checked: ", checked)
       if(component.state[type].length > 4 && !checked){
         return <Form.Check  name={id} type='checkbox' disabled onClick={action} inline />
       }else{
@@ -45,7 +44,7 @@ class Categories extends Component {
       }else{
         haves = haves.filter(item => item !== id);
       }
-      component.setState({haves : haves}, () => console.log('haves from  cb', component.state.haves));
+      component.setState({haves : haves});
     }
 
     function wantCategoryOnChange(event){
@@ -56,7 +55,7 @@ class Categories extends Component {
       }else{
         wants = wants.filter(item => item !== id);
       }
-      component.setState({wants : wants}, () => console.log('wants from  cb', component.state.wants));
+      component.setState({wants : wants});
     }
 
     return (
