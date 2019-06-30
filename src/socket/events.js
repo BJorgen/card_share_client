@@ -19,9 +19,11 @@ function eventHandlers(App) {
     },
 
     attendee : function(msg){
-      msg=JSON.parse(msg);
-      if( !msg.error){
-        App.setState({attendee : msg})
+      let attendee=JSON.parse(msg);
+      if( !attendee.error){
+        attendee.wants = !attendee.wants[0] === 'null' ? attendee.wants : [];
+        attendee.haves = !attendee.wants[0] === 'null' ? attendee.wants : [];
+        App.setState({attendee : attendee})
       }else{
         App.sendAlert(msg);
       }
@@ -31,6 +33,14 @@ function eventHandlers(App) {
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
       App.setState({attendees : msg})
+    },
+
+    attendee_interests : function(msg){
+      msg=JSON.parse(msg);
+      const attendee = App.state.attendee;
+      attendee.haves = msg.haves;
+      attendee.wants = msg.wants;
+      App.setState({attendee : attendee})
     },
     
     categories : function(msg){

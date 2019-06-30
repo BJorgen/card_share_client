@@ -11,8 +11,8 @@ import ProfileForm from './Pages/Profile/ProfileForm.jsx';
 class Main extends Component {
   render(){
     const { profile, categories, subCategories, actions, attendees, event, socket } = this.props;
-    const isProfileSetUp = profile && profile.tagline && (profile.want || profile.have);
-    console.log("from main:", profile);
+    let isProfileSetUp = profile && profile.tagline && (profile.wants || profile.haves);
+    console.log("from main:", profile, isProfileSetUp);
 
     if(profile && categories && !isProfileSetUp){
       return (

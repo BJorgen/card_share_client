@@ -8,11 +8,59 @@ import Col from 'react-bootstrap/Col'
 
 
 class Categories extends Component {
+
+ constructor(props){
+    super(props);
+    this.state = {
+      haves : props.profile.haves,
+      wants : props.profile.wants
+    }
+  }
+  
   render() {
-    const { categories, subCategories } = this.props;
-    console.log(categories);
+    const { categories, subCategories, actions } = this.props;
+    const component = this;
+
+    function submitCategories(event) {
+      event.preventDefault();
+      const interests = { wants: component.state.wants, haves: component.state.haves}
+      actions.updateInterests(interests)
+    }
+    
+    function getCheckboxButton(id, action, type){
+      const checked = component.state[type].includes("" + id)
+      if(component.state[type].length > 4 && !checked){
+        return <Form.Check  name={id} type='checkbox' disabled onClick={action} inline />
+      }else{
+        return <Form.Check  name={id} type='checkbox' onClick={action} inline />
+      }
+    }
+
+    function haveCategoryOnChange(event){
+      const id = event.target.name;
+      let haves = component.state.haves;
+      if(event.target.checked){
+        haves.push(id);
+      }else{
+        haves = haves.filter(item => item !== id);
+      }
+      component.setState({haves : haves});
+    }
+
+    function wantCategoryOnChange(event){
+      let wants = component.state.wants;
+      const id = event.target.name;
+      if(event.target.checked){
+        wants.push(id);
+      }else{
+        wants = wants.filter(item => item !== id);
+      }
+      component.setState({wants : wants});
+    }
+
     return (
       <Accordion>
+        <Form onSubmit={submitCategories}>
         {categories.map((category) => (
         <Card>
           <Card.Header>
@@ -33,16 +81,16 @@ class Categories extends Component {
                     <Form.Text>Haves</Form.Text>                     
                   </Col>
                 </Row>
-              {subCategories.filter((subCategory) => subCategory.category_id === category.id).map(subCategory => (             
+              {subCategories.filter(subCategory => subCategory.category_id === category.id).map((subCategory,component) => (             
                 <Row>
                   <Col xs={6} md={6}>
                     {subCategory.name}
                   </Col>
                   <Col xs={3} md={3}>
-                      <Form.Check inline id={`inline-${'checkbox'}-1`} />
+                    {getCheckboxButton(subCategory.id, haveCategoryOnChange, "haves")}
                   </Col>
                   <Col xs={3} md={3}>
-                      <Form.Check inline id={`inline-${'checkbox'}-2`} />                      
+                    {getCheckboxButton(subCategory.id, wantCategoryOnChange, "wants")}                   
                   </Col>
                 </Row>
               ))}
@@ -50,6 +98,9 @@ class Categories extends Component {
           </Accordion.Collapse>
         </Card>
         ))}
+                      <Button as="input" type="submit" value="Submit" size="sm"/>
+
+        </Form>
       </Accordion>
     );
   }
