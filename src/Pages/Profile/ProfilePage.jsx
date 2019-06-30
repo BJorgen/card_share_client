@@ -24,6 +24,11 @@ class ProfilePage extends Component {
             Edit Profile
           </Button>
         </div>
+        <div>
+          <Button href="/categoryselector">
+            Select Topics
+          </Button>
+        </div>
 
       </div>
     );

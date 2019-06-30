@@ -7,6 +7,7 @@ import MessagePage from './Pages/Messages/MessagesPage.jsx';
 import ContactsPage from './Pages/Contacts/ContactsPage.jsx';
 import Home from './Pages/Home/Home.jsx';
 import ProfileForm from './Pages/Profile/ProfileForm.jsx';
+import Categories from './Pages/Profile/Categories.jsx';
 
 class Main extends Component {
   render(){
@@ -39,6 +40,9 @@ class Main extends Component {
           )}/>
           <Route path="/editprofile" render={(routeProps) => (
             <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+          )}/>
+          <Route path="/categoryselector" render={(routeProps) => (
+            <Categories {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
           )}/>
 
           <Route exact path="/" render={(routeProps) => (
