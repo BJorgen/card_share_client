@@ -1,11 +1,10 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button'
 import OAuth from './Oauth.jsx'
 
 
 function LoginButton(props) {
   if(props.user){
-    return (<Button onClick={props.logOut}> LogOut </Button>);
+    return (<div onClick={props.logOut}> LogOut </div>);
   }
   else if (props.socket){
     return (
@@ -16,7 +15,7 @@ function LoginButton(props) {
     />
     );
   }else{
-    return( <Button> Login </Button>);
+    return( <div> Login </div>);
   }
 }
 
