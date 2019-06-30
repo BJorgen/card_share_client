@@ -8,11 +8,6 @@ class MessagesPage extends Component {
     return (
       <div>
         Hello from the MessagesPage!!
-
-        Temp Storage for Login Form!
-        <Container>
-          <ProfileForm categories={this.props.categories} subCategories={this.props.subCategories} profile={this.props.profile}/>
-        </Container>
       </div>
     );
   }

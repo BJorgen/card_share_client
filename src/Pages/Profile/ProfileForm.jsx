@@ -72,9 +72,7 @@ class ProfileForm extends Component {
 
               <Button as="input" type="submit" value="Submit" size="sm"/>
               </Form>
-
-
-
+              
             </Card.Body>
           </Card>
         </Tab>

@@ -12,7 +12,6 @@ class Main extends Component {
   render(){
     const { profile, categories, subCategories, actions, attendees, event, socket } = this.props;
     let isProfileSetUp = profile && profile.tagline && (profile.wants || profile.haves);
-    console.log("from main:", profile, isProfileSetUp);
 
     if(profile && categories && !isProfileSetUp){
       return (
@@ -27,7 +26,7 @@ class Main extends Component {
       <main style={{ minHeight: '70vh' }}>        
         <Switch>
           <Route path="/profile" render={(routeProps) => (
-            <ProfilePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile}/>
+            <ProfilePage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
           )}/>
           <Route path="/network" render={(routeProps) => (
             <NetworkPage {...routeProps} actions={actions} attendees={attendees}/>
@@ -37,6 +36,9 @@ class Main extends Component {
           )}/>
           <Route path="/contacts" render={(routeProps) => (
             <ContactsPage {...routeProps} actions={actions} attendees={attendees}/>
+          )}/>
+          <Route path="/editprofile" render={(routeProps) => (
+            <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
           )}/>
 
           <Route exact path="/" render={(routeProps) => (
