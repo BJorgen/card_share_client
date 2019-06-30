@@ -34,6 +34,14 @@ function eventHandlers(App) {
       msg=JSON.parse(msg);
       App.setState({attendees : msg})
     },
+
+    attendee_interests : function(msg){
+      msg=JSON.parse(msg);
+      const attendee = App.state.attendee;
+      attendee.haves = msg.haves;
+      attendee.wants = msg.wants;
+      App.setState({attendee : attendee})
+    },
     
     categories : function(msg){
       // App.sendAlert(msg);

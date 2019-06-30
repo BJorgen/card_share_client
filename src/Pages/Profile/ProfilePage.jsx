@@ -39,7 +39,7 @@ class ProfilePage extends Component {
         </Tabs>
 
         <div>
-          <Categories categories={this.props.categories} subCategories={this.props.subCategories} />
+          <Categories profile={profile} categories={this.props.categories} subCategories={this.props.subCategories} />
         </div>
       </div>
     );
