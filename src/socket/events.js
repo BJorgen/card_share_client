@@ -72,6 +72,7 @@ function eventHandlers(App) {
     },
 
     connection_change : function(msg){
+      console.log('connection change', msg)
       const notification = JSON.parse(msg);
       if(notification.error){
         alert(msg);
@@ -82,6 +83,17 @@ function eventHandlers(App) {
       const attendees = App.state.attendees;
       if(attendees[otherAttendeeId]){
         attendees[otherAttendeeId].connection = {sender : requester_id, status : status};
+      }
+      App.setState({attendees});
+    },
+
+    update_to_connected : function(msg){
+      const notification = JSON.parse(msg);
+      const {id, photo, first_name} = notification
+      const attendees = App.state.attendees;
+      if(attendees[id]){
+        attendees[id].photo = photo;
+        attendees[id].first_name = first_name;
       }
       App.setState({attendees});
     },
