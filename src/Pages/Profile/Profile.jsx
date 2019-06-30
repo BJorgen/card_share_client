@@ -5,10 +5,9 @@ import ConnectedCard from '../../Common/Cards/ConnectedCard.jsx';
 import SharedCard from '../../Common/Cards/SharedCard.jsx';
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
-import Button from '@material-ui/core/Button';
 import Categories from './Categories.jsx';
 
-class ProfilePage extends Component {
+class Profile extends Component {
 
   render(){
     console.log("From profile: ", this.props.profile.last_name);
@@ -16,15 +15,9 @@ class ProfilePage extends Component {
     const basicProfile = profile;
     const connectedProfile = profile;
 
-
     return (
       <div>
-        <h4>Attendee Profile</h4>
-        <div>
-          <Button href="/editprofile">
-            Link
-          </Button>
-        </div>
+        Hello from the ProfilePage!!
 
         <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
           <Tab eventKey="home" title="Basic">
@@ -32,10 +25,12 @@ class ProfilePage extends Component {
             {/* <BusinessCard profile={profile}/> */}
           </Tab>
 
+
           <Tab eventKey="profile" title="Connected"> 
             <ConnectedCard profile={profile}/>
             {/* <BusinessCard profile={connectedProfile}/> */}
           </Tab>
+
 
           <Tab eventKey="topics" title="Shared">
             <SharedCard profile={profile}/>
@@ -43,9 +38,12 @@ class ProfilePage extends Component {
           </Tab>
         </Tabs>
 
+        <div>
+          <Categories profile={profile} categories={this.props.categories} subCategories={this.props.subCategories} />
+        </div>
       </div>
     );
   }
 }
 
-export default ProfilePage;
+export default Profile;

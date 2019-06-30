@@ -21,7 +21,6 @@ const useStyles = makeStyles(theme => ({
   title: {
     display: "block"
   }
-
 }));
 
 function Header(props) {
@@ -53,12 +52,10 @@ function Header(props) {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
-    
-  console.log(props.socket);
   
   return (
     <div className={classes.grow}>
-      <AppBar position="static">
+      <AppBar color="primary" className={classes.colorPrimary}>
         <Toolbar>
 
           <Typography className={classes.title} variant="h6" noWrap>
@@ -67,7 +64,7 @@ function Header(props) {
 
           <div className={classes.grow} />
           <IconButton aria-label="Show 17 new notifications" color="inherit" onClick={props.showNotifications}>
-            <Badge badgeContent={17} color="secondary">
+            <Badge badgeContent={5} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
@@ -79,10 +76,10 @@ function Header(props) {
             onClick={handleProfileMenuOpen}
             color="inherit"
           >
-              <MenuIcon className={classes.menuButton}/>
+            <MenuIcon className={classes.menuButton}/>
           </IconButton>
 
-            <LoginButton  socket={props.socket} event= {props.event}/>
+          <LoginButton  socket={props.socket} event= {props.event}/>
 
         </Toolbar>
       </AppBar>
