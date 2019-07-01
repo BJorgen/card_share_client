@@ -11,10 +11,16 @@ class NetworkPage extends Component {
 
     console.log("from the network, points ", pointsAttendees);
 
-    let sorted = {}
-    sorted.hp = pointsAttendees.sort((a, b) => (b.hp - a.hp))
-    sorted.wp = pointsAttendees.sort((a, b) => (b.wp - a.wp))
-    sorted.tp = pointsAttendees.sort((a, b) => ((b.hp + b.wp) - (a.hp + a.wp)))
+    // function sortList(pointsAttendees, hp, wp) {
+
+
+    // }
+    // sorted.hp = pointsAttendees.sort((a, b) => (b.hp - a.hp))
+    // sorted.wp = pointsAttendees.sort((a, b) => (b.wp - a.wp))
+    // sorted.tp = pointsAttendees.sort((a, b) => ((b.hp + b.wp) - (a.hp + a.wp)))
+
+    const sorted = pointsAttendees.sort((a, b) => (b.hp - a.hp)).map(item => item.id)
+    console.log('SortedList', sorted)
 
 
     return (
