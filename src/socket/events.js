@@ -35,8 +35,9 @@ function eventHandlers(App) {
         notification = {
           id : id,
           content : `You have a new message ${getDisplayNameWFrom(App.state.attendees[obj.sender_id])}`,
-          type : 'MESSAGE',
-          source_id : obj.sender_id}
+          source_id : obj.sender_id,
+          link : 'messages'
+        }
         notifications[id] = notification;
         break;
       case 'CONNECTION' :
@@ -47,8 +48,8 @@ function eventHandlers(App) {
         notification = {
           id : App.getNextNotificationId(),
           content : `You have a new connection request ${getDisplayNameWFrom(obj)}`,
-          type : 'CONNECTION', 
-          source_id : obj.requester_id
+          source_id : obj.requester_id,
+          link : 'network'
         };
         notifications[notification.id] = notification;
         break;
@@ -57,8 +58,8 @@ function eventHandlers(App) {
           notification = {
             id : App.getNextNotificationId(),
             content : `You are now connected with ${getDisplayName(obj)}`,
-            type : 'CONNECTION', 
-            source_id : obj.responder_id
+            source_id : obj.responder_id,
+            link : 'network'
           };
           notifications[notification.id] = notification;
         }
@@ -67,8 +68,8 @@ function eventHandlers(App) {
           notification = {
             id : App.getNextNotificationId(),
             content : `You have received a card from ${obj.first_name} ${obj.last_name}`,
-            type : 'CARD', 
-            source_id : obj.responder_id
+            source_id : obj.responder_id,
+            link : 'network'
           };
           notifications[notification.id] = notification;
       default :
