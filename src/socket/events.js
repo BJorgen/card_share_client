@@ -140,7 +140,7 @@ function eventHandlers(App) {
         const wp = msg[id].wants.filter(want => profile.haves.includes(want)).length        
 
 
-        msg[id].metaData = {hp : hp, wp : wp, tp : (hp + wp)}
+        msg[id].metaData = {hp : hp, wp : wp}
         console.log(msg[id])
         
       })
