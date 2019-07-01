@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 
 class Notifications extends Component {
   render() {
@@ -17,7 +18,7 @@ class Notifications extends Component {
         </Modal.Header>
         <Modal.Body>
           <p>
-            Notifications 1
+            {this.props.notifications.map(notification => <div>{notification.content} <Button>Delete</Button> </div>)}
           </p>
         </Modal.Body>
       </Modal>

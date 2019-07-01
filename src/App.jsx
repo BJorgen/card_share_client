@@ -63,6 +63,7 @@ class App extends Component {
 
         <Notifications
           show={this.state.modalShow}
+          notifications={this.state.notifications}
           onHide={modalClose}
         />
         <Main loggedIn={this.state.loggedIn} actions={this.actions} categories={this.state.categories}
