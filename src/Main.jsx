@@ -12,42 +12,50 @@ import Loading from './Common/Loading.jsx'
 
 class Main extends Component {
   render(){
-    const { profile, categories, subCategories, actions, attendees, event, socket } = this.props;
+    const { profile, categories, subCategories, actions, attendees, event, socket, catMap, subCatMap } = this.props;
     let isProfileSetUp = profile && profile.tagline && ((profile.wants && profile.wants.length) || (profile.haves && profile.haves.length));
 
     if(profile && categories && !isProfileSetUp){
       return (
         <Switch>
         <Route path="/" render={(routeProps) => (
-          <ProfilePage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+          <ProfilePage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap} subCatMap={subCatMap} />
         )}/>
         </Switch>
       )
-    } else if(profile && categories){
+    } else if(profile && categories && catMap && subCatMap){     
+
     return (
-      <main style={{ minHeight: '70vh' }}>        
+      <main style={{ minHeight: '70vh' }}>  
         <Switch>
           <Route path="/profile" render={(routeProps) => (
-            <ProfilePage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+            <ProfilePage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
           <Route path="/network" render={(routeProps) => (
-            <NetworkPage {...routeProps} actions={actions} attendees={attendees}/>
+            <NetworkPage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
           <Route path="/messages" render={(routeProps) => (
-            <MessagePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile}/>
+            <MessagePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
           <Route path="/contacts" render={(routeProps) => (
-            <ContactsPage {...routeProps} actions={actions} attendees={attendees}/>
+            <ContactsPage {...routeProps} actions={actions} attendees={attendees} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
           <Route path="/editprofile" render={(routeProps) => (
-            <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+            <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
           <Route path="/categoryselector" render={(routeProps) => (
-            <Categories {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+            <Categories {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
 
           <Route exact path="/" render={(routeProps) => (
-            <NetworkPage {...routeProps} actions={actions} attendees={attendees}/>
+            <NetworkPage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap}
+            subCatMap={subCatMap} />
           )}/>
         </Switch>
       </main>
