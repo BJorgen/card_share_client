@@ -10,6 +10,18 @@ const getOtherAttendeeId = function(incomeingId1, incomeingId2, id){
 }
 
 function eventHandlers(App) {
+  const stringOrEmpty = function(string){
+    return string || '';
+  }
+
+  const getDisplayName = function(obj){
+    return stringOrEmpty(obj.first_name) + stringOrEmpty(obj.last_name);
+  }
+
+  const getDisplayNameWFrom = function(obj){
+    let name = getDisplayName(obj);
+    return name ? `from ${name}` : '';
+  }
 
   // add a notification for the state
   // there is an isNotification flag for events which are also sent back to the actor 
@@ -18,8 +30,13 @@ function eventHandlers(App) {
     let notification;
     switch(type){
       case 'message_received'  :
+        console.log(obj)
         const id = App.getNextNotificationId();
-        notification = {id : id, content : `You have a new message from ${obj.sender_id}`, type : 'MESSAGE', source_id : obj.sender_id}
+        notification = {
+          id : id,
+          content : `You have a new message ${getDisplayNameWFrom(App.state.attendees[obj.sender_id])}`,
+          type : 'MESSAGE',
+          source_id : obj.sender_id}
         notifications[id] = notification;
         break;
       case 'CONNECTION' :
@@ -29,7 +46,7 @@ function eventHandlers(App) {
         }
         notification = {
           id : App.getNextNotificationId(),
-          content : `You have a new connection request from ${obj.requester_id}`,
+          content : `You have a new connection request ${getDisplayNameWFrom(obj)}`,
           type : 'CONNECTION', 
           source_id : obj.requester_id
         };
@@ -39,7 +56,7 @@ function eventHandlers(App) {
         if( obj.isNotification){ 
           notification = {
             id : App.getNextNotificationId(),
-            content : `You are now connected with ${obj.first_name}`,
+            content : `You are now connected with ${getDisplayName(obj)}`,
             type : 'CONNECTION', 
             source_id : obj.responder_id
           };
