@@ -65,7 +65,7 @@ function eventHandlers(App) {
       App.setState({attendee : attendee})
       window.location.pathname = '/network'
     },
-    
+
     categories : function(msg){
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
@@ -73,16 +73,46 @@ function eventHandlers(App) {
     },
 
     connection_change : function(msg){
+      console.log('connection change', msg)
       const notification = JSON.parse(msg);
       if(notification.error){
         alert(msg);
         return;
       }
       const {requester_id, responder_id, status} = notification
-      const otherAttendeeId = getOtherAttendeeId(requester_id, responder_id, App.state.attendee.id) 
+      const otherAttendeeId = getOtherAttendeeId(requester_id, responder_id, App.state.attendee.id)
       const attendees = App.state.attendees;
       if(attendees[otherAttendeeId]){
         attendees[otherAttendeeId].connection = {sender : requester_id, status : status};
+      }
+      App.setState({attendees});
+    },
+
+    update_to_connected : function(msg){
+      const notification = JSON.parse(msg);
+      const {id, photo, first_name} = notification
+      const attendees = App.state.attendees;
+      if(attendees[id]){
+        attendees[id].photo = photo;
+        attendees[id].first_name = first_name;
+      }
+      App.setState({attendees});
+    },
+
+    update_to_card_shared : function(msg){
+      const notification = JSON.parse(msg);
+      const {id, photo, first_name, last_name, email_address, phone_number, position, company} = notification;
+      const attendees = App.state.attendees;
+      if(attendees[id]){
+        const target = attendees[id];
+        target.first_name = first_name;
+        target.last_name = last_name;
+        target.photo = photo;
+        target.email_address = email_address;
+        target.phone_number = phone_number;
+        target.position = position;
+        target.company = company;
+        target['linkedin-link'] = notification['linkedin-link'];
       }
       App.setState({attendees});
     },
