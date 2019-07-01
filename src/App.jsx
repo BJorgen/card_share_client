@@ -18,7 +18,7 @@ class App extends Component {
       attendee : null,
       attendees: null,
       event : {id : 1000001},
-      notifications : [],
+      notifications : {},
       messages : {},
       loggedIn : false
     };
@@ -57,13 +57,15 @@ class App extends Component {
     let modalClose = () => this.setState({ modalShow: false });
     return (
       <div>
-        <Header showNotifications={this.showNotifications} socket={this.state.connection} user={this.state.user} logOut={() =>this.logOut()} event={this.state.event}/>
+        <Header showNotifications={this.showNotifications} notifications={this.state.notifications} socket={this.state.connection} user={this.state.user} logOut={() =>this.logOut()} event={this.state.event}/>
         <div className="footer-fantom"></div>
         {/* <button onClick={() => this.initData() } > Get ALL </button> */}
 
         <Notifications
           show={this.state.modalShow}
+          notifications={this.state.notifications}
           onHide={modalClose}
+          deleteNotification={this.actions.deleteNotification}
         />
         <Main loggedIn={this.state.loggedIn} actions={this.actions} categories={this.state.categories}
           subCategories={this.state.subCategories}  profile={this.state.attendee} attendees={this.state.attendees}
@@ -74,6 +76,14 @@ class App extends Component {
       </div>
     );
   }
+
+  getNextNotificationId = function(){
+    let next = 1;
+    const getNextNotificationId = function(){
+      return next++;
+    } 
+    return getNextNotificationId;
+  }()
 }
 
 export default App;

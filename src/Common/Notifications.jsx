@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
 import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
 
 class Notifications extends Component {
+  
   render() {
+    const {notifications, deleteNotification, ...rest} = this.props;
     return (
       <Modal
-        {...this.props}
+        {...rest}
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
@@ -16,9 +19,8 @@ class Notifications extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            Notifications 1
-          </p>
+          {Object.entries(notifications).map(entry => 
+                            <div key={`notif_${entry[0]}`}>{entry[1].content} <Button onClick={() => deleteNotification(entry[0])}>Delete</Button> </div>)}
         </Modal.Body>
       </Modal>
     );
