@@ -1,4 +1,6 @@
 module.exports = function(App) {
+  const event_id = App.state.event.id;
+
   return {
 
     initData(){
@@ -51,6 +53,10 @@ module.exports = function(App) {
       App.state.connection.emit('delete_card', attendee_id);
     },
   
+    sendMessage(receiver_id, content){
+      App.state.connection.emit('send_message', JSON.stringify({receiver_id, content, event_id}));
+    },
+
     logOut(){
       this.state.connection.emit('log_out','');
     },
