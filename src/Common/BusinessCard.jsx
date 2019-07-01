@@ -12,7 +12,7 @@ import Image from 'react-bootstrap/Image'
 class BusinessCard extends Component {
 
   render(){
-    const attendee = this.props.attendee;
+    const {attendee, categories, subCategories, profile, actions, catMap, subCatMap } = this.props;
 
     function cardHeader() {
       if (attendee.first_name) {
@@ -37,7 +37,7 @@ class BusinessCard extends Component {
                 <Image src={attendee.photo} rounded width={120} height={120} alt="120x120"/>
               </Col>
               <Col xs={8} md={8}>
-                <CardInterests attendee={attendee}/>
+                <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
               </Col>
             </Row>
           </Container>
@@ -51,7 +51,7 @@ class BusinessCard extends Component {
         </Card.Body>
 
         <Card.Footer>
-          <CardActions actions={this.props.actions} attendee={attendee}/>
+          <CardActions actions={actions} attendee={attendee}/>
         </Card.Footer>
       </Card>
     );

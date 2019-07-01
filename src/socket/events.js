@@ -104,11 +104,27 @@ function eventHandlers(App) {
       window.location.pathname = '/network'
     },
 
+
+
     categories : function(msg){
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
-      App.setState({categories: msg.categories, subCategories: msg.subCategories});
+
+      const subCategoryMap = msg.subCategories.reduce(function(map, obj) {
+        map[obj.id] = {name: obj.name, category_id: obj.category_id};
+        return map;
+      }, {});
+
+      const categoryMap = msg.categories.reduce(function(map, obj) {
+        map[obj.id] = {name: obj.name, event_id : obj.event_id};
+        return map;
+      }, {});
+
+      App.setState({categories: msg.categories, subCategories: msg.subCategories,
+        catMap: categoryMap, subCatMap: subCategoryMap});
     },
+
+
 
     connection_change : function(msg){
       const notification = JSON.parse(msg);

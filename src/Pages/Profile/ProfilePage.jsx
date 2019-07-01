@@ -6,7 +6,7 @@ import ProfileForm from './ProfileForm.jsx';
 
 class ProfilePage extends Component {
   render(){
-    const { profile, categories, subCategories, actions } = this.props;
+    const { profile, categories, subCategories, actions, catMap, subCatMap} = this.props;
 
     if (!profile.tagline){
       return (
@@ -21,7 +21,12 @@ class ProfilePage extends Component {
         <div>
           <h4>Attendee Profile</h4>
   
-          <Profile profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+          <Profile profile={profile} 
+          categories={categories} 
+          subCategories={subCategories} 
+          actions={actions} 
+          catMap={catMap} 
+          subCatMap={subCatMap}/>
   
           <div>
             <Button href="/editprofile">

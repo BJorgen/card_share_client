@@ -5,7 +5,8 @@ import CardDeck from 'react-bootstrap/CardDeck'
 class NetworkPage extends Component {
 
   render(){
-    const attendees = this.props.attendees;
+    const { attendees , categories, subCategories, profile, actions, catMap, subCatMap } = this.props;
+
     if (!attendees || typeof attendees !== 'object') return null
     return (
       <div>
@@ -16,7 +17,12 @@ class NetworkPage extends Component {
             <BusinessCard
             attendee={attendees[attendee_key]}
             key={ attendees[attendee_key].id }
-            actions={this.props.actions}/>
+            categories={categories}
+            subCategories={subCategories}
+            profile={profile}
+            actions={actions}
+            catMap={catMap}
+            subCatMap={subCatMap}/>
           ))}
 
         </CardDeck>
