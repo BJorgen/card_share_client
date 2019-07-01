@@ -18,7 +18,7 @@ class App extends Component {
       attendee : null,
       attendees: null,
       event : {id : 1000001},
-      notifications : [],
+      notifications : {},
       messages : {},
       loggedIn : false
     };
@@ -74,6 +74,18 @@ class App extends Component {
       </div>
     );
   }
+
+  deleteNotification(id){
+
+  }
+
+  getNextNotificationId = function(){
+    let next = 1;
+    const getNextNotificationId = function(){
+      return next++;
+    } 
+    return getNextNotificationId;
+  }()
 }
 
 export default App;

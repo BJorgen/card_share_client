@@ -17,8 +17,9 @@ function eventHandlers(App) {
     const notifications = App.state.notifications;
     switch(type){
       case 'message_received'  :
-        const notification = {content : `You got a new message from ${obj.sender_id}`, type : 'message_received', id : obj.sender_id}
-        notifications.push(notification)
+        const id = App.getNextNotificationId();
+        const notification = {id : id, content : `You got a new message from ${obj.sender_id}`, type : 'message_received', sourcded : obj.sender_id}
+        notifications[id] = notification;
         break;
     }
     App.setState({notifications})

@@ -3,7 +3,9 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 class Notifications extends Component {
+  
   render() {
+    const {notifications} = this.props;
     return (
       <Modal
         {...this.props}
@@ -17,9 +19,7 @@ class Notifications extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            {this.props.notifications.map(notification => <div>{notification.content} <Button>Delete</Button> </div>)}
-          </p>
+          {Object.entries(notifications).map(entry => <div key={`notif_${entry[0]}`}>{entry[1].content} <Button>Delete</Button> </div>)}
         </Modal.Body>
       </Modal>
     );
