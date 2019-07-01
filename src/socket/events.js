@@ -9,8 +9,35 @@ const getOtherAttendeeId = function(incomeingId1, incomeingId2, id){
   return incomeingId1;
 }
 
+
+
 function eventHandlers(App) {
+
+  const addNotification = function(type, obj){
+    const notifications = App.state.notifications;
+    switch(type){
+      case 'message_received'  :
+        const notification = {content : `You got a new message from ${obj.sender_id}`, type : 'message_received', id : obj.sender_id}
+        notifications.push(notification)
+        break;
+    }
+    App.setState({notifications})
+  }
+
+  const addMessage = function(attendee_id, message){
+    const messages = App.state.messages;
+    messages[attendee_id] = messages[attendee_id] ? messages[attendee_id].concat(message) : [message];
+    App.setState({messages}); 
+  } 
+
+  /***************************************************
+   *               Event Handlers
+   ***************************************************/
   return {
+
+    error_message : function(msg){
+      console.log('ERROR', msg);
+    },
 
     user : function(msg){
       // App.sendAlert(msg);
@@ -20,7 +47,7 @@ function eventHandlers(App) {
 
     attendee : function(msg){
       let attendee=JSON.parse(msg);
-      if( !attendee.error){
+      if( !attendee.error){ 
         attendee.wants = !attendee.wants[0] === 'null' ? attendee.wants : [];
         attendee.haves = !attendee.wants[0] === 'null' ? attendee.wants : [];
         App.setState({attendee : attendee})
@@ -154,6 +181,17 @@ function eventHandlers(App) {
         App.state.connection.disconnect();
         App.connect();
       }
+    },
+
+    message_sent : function(msg){
+      const message = JSON.parse(msg);
+      addMessage(message.receiver_id, message);
+    },
+
+    message_incoming : function(msg){
+      const message = JSON.parse(msg);
+      addNotification('message_received', message)
+      addMessage(message.sender_id, message);
     }
   }
 }

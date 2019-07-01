@@ -18,6 +18,8 @@ class App extends Component {
       attendee : null,
       attendees: null,
       event : {id : 1000001},
+      notifications : [],
+      messages : {},
       loggedIn : false
     };
     let actions = socketActions(this)
@@ -31,7 +33,7 @@ class App extends Component {
   sendAlert(msg){
     alert(msg);
   }
-  
+
   componentDidMount() {
     this.connect();
   }
@@ -47,10 +49,10 @@ class App extends Component {
     this.setState({connection : connection});
     // try to fech data from the server, but give a connection 0.5 to be initialized
     setTimeout(App.loadDataIfLoggedIn, 1000);
-    
+
   }
 
-  
+
   render(){
     let modalClose = () => this.setState({ modalShow: false });
     return (
