@@ -12,16 +12,26 @@ import Categories from './Pages/Profile/Categories.jsx';
 class Main extends Component {
   render(){
     const { profile, categories, subCategories, actions, attendees, event, socket } = this.props;
-    let isProfileSetUp = profile && profile.tagline && (profile.wants || profile.haves);
+    let isProfileSetUp = profile && profile.tagline && (profile.wants && profile.wants.length || profile.haves && profile.haves.length);
 
     if(profile && categories && !isProfileSetUp){
-      return (
-        <Switch>
-        <Route path="/" render={(routeProps) => (
-          <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
-        )}/>
-        </Switch>
-      )
+      if (!profile.tagline) {
+        return (
+          <Switch>
+          <Route path="/" render={(routeProps) => (
+            <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+          )}/>
+          </Switch>
+        )
+      }  else {
+        return (
+          <Switch>
+          <Route path="/" render={(routeProps) => (
+            <Categories {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+          )}/>
+          </Switch>
+        )
+      }
     } else if(profile && categories){
     return (
       <main style={{ minHeight: '70vh' }}>        

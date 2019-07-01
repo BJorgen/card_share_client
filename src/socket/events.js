@@ -19,10 +19,11 @@ function eventHandlers(App) {
     },
 
     attendee : function(msg){
+
       let attendee=JSON.parse(msg);
       if( !attendee.error){
-        attendee.wants = !attendee.wants[0] === 'null' ? attendee.wants : [];
-        attendee.haves = !attendee.wants[0] === 'null' ? attendee.wants : [];
+        attendee.wants = !(attendee.wants[0] === 'null') ? attendee.wants : [];
+        attendee.haves = !(attendee.haves[0] === 'null') ? attendee.haves : [];
         App.setState({attendee : attendee})
       }else{
         App.sendAlert(msg);
@@ -63,6 +64,7 @@ function eventHandlers(App) {
       attendee.haves = msg.haves;
       attendee.wants = msg.wants;
       App.setState({attendee : attendee})
+      window.location.pathname = '/network'
     },
     
     categories : function(msg){
