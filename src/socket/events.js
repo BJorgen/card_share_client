@@ -9,16 +9,29 @@ const getOtherAttendeeId = function(incomeingId1, incomeingId2, id){
   return incomeingId1;
 }
 
-
-
 function eventHandlers(App) {
 
   const addNotification = function(type, obj){
     const notifications = App.state.notifications;
+    let notification;
     switch(type){
       case 'message_received'  :
         const id = App.getNextNotificationId();
-        const notification = {id : id, content : `You got a new message from ${obj.sender_id}`, type : 'message_received', sourcded : obj.sender_id}
+        notification = {id : id, content : `You have a new message from ${obj.sender_id}`, type : 'message_received', source_id : obj.sender_id}
+        notifications[id] = notification;
+        break;
+      case 'CONNECTION' :
+        console.log('in connection')
+        // if status is connected an other upate will come from the server with basic details
+        if( (! obj.isNotification ) || obj.status !== 'SENT'){
+          return;
+        }
+        notification = {
+          id : App.getNextNotificationId(),
+          content : `You have a new connection request from ${obj.requester_id}`,
+          type : 'CONNECTION', 
+          source_id : obj.requester_id
+        };
         notifications[id] = notification;
         break;
     }
@@ -122,6 +135,7 @@ function eventHandlers(App) {
       const attendees = App.state.attendees;
       if(attendees[otherAttendeeId]){
         attendees[otherAttendeeId].connection = {sender : requester_id, status : status};
+        addNotification('CONNECTION', notification);
       }
       App.setState({attendees});
     },
