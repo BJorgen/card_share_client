@@ -11,13 +11,15 @@ const getOtherAttendeeId = function(incomeingId1, incomeingId2, id){
 
 function eventHandlers(App) {
 
+  // add a notification for the state
+  // there is an isNotification flag for events which are also sent back to the actor 
   const addNotification = function(type, obj){
     const notifications = App.state.notifications;
     let notification;
     switch(type){
       case 'message_received'  :
         const id = App.getNextNotificationId();
-        notification = {id : id, content : `You have a new message from ${obj.sender_id}`, type : 'message_received', source_id : obj.sender_id}
+        notification = {id : id, content : `You have a new message from ${obj.sender_id}`, type : 'MESSAGE', source_id : obj.sender_id}
         notifications[id] = notification;
         break;
       case 'CONNECTION' :
@@ -31,7 +33,7 @@ function eventHandlers(App) {
           type : 'CONNECTION', 
           source_id : obj.requester_id
         };
-        notifications[id] = notification;
+        notifications[notification.id] = notification;
         break;
       case 'CONNECTED' :
         if( obj.isNotification){ 
@@ -41,9 +43,17 @@ function eventHandlers(App) {
             type : 'CONNECTION', 
             source_id : obj.responder_id
           };
-          notifications[id] = notification;
-      }
+          notifications[notification.id] = notification;
+        }
         break;
+      case 'CARD_RECEIVED' :
+          notification = {
+            id : App.getNextNotificationId(),
+            content : `You have received a card from ${obj.first_name} ${obj.last_name}`,
+            type : 'CARD', 
+            source_id : obj.responder_id
+          };
+          notifications[notification.id] = notification;
       default :
         break
     }
@@ -178,6 +188,7 @@ function eventHandlers(App) {
         target.position = position;
         target.company = company;
         target['linkedin-link'] = notification['linkedin-link'];
+        addNotification('CARD_RECEIVED', {...target, card_share_id : notification.id});
       }
       App.setState({attendees});
     },
