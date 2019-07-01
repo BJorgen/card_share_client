@@ -9,7 +9,7 @@ class Home extends Component {
       <div>
         <h1> Lighthouse Labs Demo Day 04.07.2019</h1>
         <h2> Please log in to participate in the event </h2>
-        <LoginButton  socket={this.props.socket} event= {this.props.event}/>
+        <LoginButton socket={this.props.socket} event={this.props.event}/>
       </div>
     );
   }

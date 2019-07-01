@@ -9,7 +9,7 @@ class NetworkPage extends Component {
     if (!attendees || typeof attendees !== 'object') return null
     return (
       <div>
-        Hello from the NetworkPage!!
+        <h4>Event Network</h4>
         <CardDeck>
 
           {Object.keys(attendees).map((attendee_key) => (

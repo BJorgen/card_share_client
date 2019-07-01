@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome';
-import IconButton from "@material-ui/core/IconButton";
 
 export default class OAuth extends Component {
   
@@ -29,7 +28,8 @@ export default class OAuth extends Component {
 }
 
 openPopup() {
-  const { provider, socket } = this.props
+  // const { provider, socket } = this.props
+  const { socket } = this.props
   const socketId = socket ? socket.id : '';
   const eventId = this.props.event ?  this.props.event.id : '';
   const width = 600, height = 600

@@ -3,17 +3,14 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Tabs from 'react-bootstrap/Tabs'
-import Tab from 'react-bootstrap/Tab'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
-import Categories from './Categories.jsx';
 
 class ProfileForm extends Component {
 
   render(){
-    const {profile, actions, categories, subCategories} = this.props;
+    const {profile, actions} = this.props;
 
     function submitProfile(event) {
       event.preventDefault();
@@ -79,19 +76,3 @@ class ProfileForm extends Component {
 
 export default ProfileForm;
 
-
-
-
-// Show profile
-// image
-// "email_address":"gi@gmail.com"
-// "first_name":"Gi"
-// "last_name":"Gilast"
-
-// "linkedin-link":"https://www.linkedin.com"
-
-// Prompt profile for:
-
-// "tagline":null
-// "haves":["1000008","1000010","1000016","1000019","1000023"]
-// "wants":["1000008","1000010","1000016","1000019","1000023"]

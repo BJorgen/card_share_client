@@ -8,11 +8,12 @@ import ContactsPage from './Pages/Contacts/ContactsPage.jsx';
 import Home from './Pages/Home/Home.jsx';
 import ProfileForm from './Pages/Profile/ProfileForm.jsx';
 import Categories from './Pages/Profile/Categories.jsx';
+import Loading from './Common/Loading.jsx'
 
 class Main extends Component {
   render(){
     const { profile, categories, subCategories, actions, attendees, event, socket } = this.props;
-    let isProfileSetUp = profile && profile.tagline && (profile.wants && profile.wants.length || profile.haves && profile.haves.length);
+    let isProfileSetUp = profile && profile.tagline && ((profile.wants && profile.wants.length) || (profile.haves && profile.haves.length));
 
     if(profile && categories && !isProfileSetUp){
       return (
@@ -56,7 +57,7 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-          <Home {...routeProps} event={event} socket={socket}/>
+          <Loading {...routeProps}/>
         )}/>
       </Switch>
     );
@@ -65,8 +66,8 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-              <Home {...routeProps} event={event} socket={socket}/>
-            )}/>
+          <Home {...routeProps} event={event} socket={socket}/>
+        )}/>
       </Switch>
     );
   }

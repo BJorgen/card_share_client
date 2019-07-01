@@ -10,8 +10,8 @@ class Profile extends Component {
 
   render(){
     const profile = this.props.profile;
-    const basicProfile = profile;
-    const connectedProfile = profile;
+    // const basicProfile = profile;
+    // const connectedProfile = profile;
 
     return (
       <div>

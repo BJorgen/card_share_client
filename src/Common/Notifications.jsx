@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 
 class Notifications extends Component {
   render() {
@@ -21,9 +20,6 @@ class Notifications extends Component {
             Notifications 1
           </p>
         </Modal.Body>
-        {/* <Modal.Footer>
-          <Button onClick={this.props.onHide}>Close</Button>
-        </Modal.Footer> */}
       </Modal>
     );
   }

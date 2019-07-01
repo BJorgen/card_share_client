@@ -21,7 +21,6 @@ function eventHandlers(App) {
     attendee : function(msg){
       let attendee=JSON.parse(msg);
       if( !attendee.error){
-        console.log("FROM HERE:", attendee, App.state.attendee)
         attendee.wants = !(attendee.wants[0] === 'null') ? attendee.wants : [];
         attendee.haves = !(attendee.haves[0] === 'null') ? attendee.haves : [];
         App.setState({attendee : attendee});
@@ -84,7 +83,6 @@ function eventHandlers(App) {
     },
 
     connection_change : function(msg){
-      console.log('connection change', msg)
       const notification = JSON.parse(msg);
       if(notification.error){
         alert(msg);

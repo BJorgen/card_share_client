@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import LoginButton from './Partials/Oauth/LoginButton.jsx'
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -48,8 +48,8 @@ function Header(props) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Edit Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Close</MenuItem>
+      <MenuItem onClick={handleMenuClose}>Close</MenuItem>
     </Menu>
   );
   
@@ -57,17 +57,6 @@ function Header(props) {
     <div className={classes.grow}>
       <AppBar color="primary" className={classes.colorPrimary}>
         <Toolbar>
-
-          <Typography className={classes.title} variant="h6" noWrap>
-            LHL Demo Day
-          </Typography>
-
-          <div className={classes.grow} />
-          <IconButton aria-label="Show 17 new notifications" color="inherit" onClick={props.showNotifications}>
-            <Badge badgeContent={5} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
           <IconButton
             edge="end"
             aria-label="Account of current user"
@@ -79,7 +68,18 @@ function Header(props) {
             <MenuIcon className={classes.menuButton}/>
           </IconButton>
 
-          <LoginButton  socket={props.socket} event= {props.event}/>
+          <Typography className={classes.title} variant="h6" noWrap>
+            LHL Demo Day
+          </Typography>
+
+          <div className={classes.grow} />
+          <IconButton aria-label="Show 17 new notifications" color="inherit" onClick={props.showNotifications}>
+            <Badge badgeContent={5} color="secondary">
+              <NotificationsIcon />
+            </Badge>
+          </IconButton>
+
+          <LoginButton  socket={props.socket} event={props.event}/>
 
         </Toolbar>
       </AppBar>
