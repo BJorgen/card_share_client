@@ -78,10 +78,10 @@ class Categories extends Component {
                       <Col xs={6} md={6}> 
                       </Col>
                       <Col xs={3} md={3}>
-                        <Form.Text>Wants</Form.Text>
+                        <Form.Text>Haves</Form.Text>
                       </Col>
                       <Col xs={3} md={3}>
-                        <Form.Text>Haves</Form.Text>                     
+                        <Form.Text>Wants</Form.Text>                     
                       </Col>
                     </Row>
                   {subCategories.filter(subCategory => subCategory.category_id === category.id).map((subCategory,component) => (             

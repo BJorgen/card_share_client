@@ -5,9 +5,13 @@ import CardDeck from 'react-bootstrap/CardDeck'
 class NetworkPage extends Component {
 
   render(){
-    const { attendees , categories, subCategories, profile, actions, catMap, subCatMap } = this.props;
+    const { attendees , categories, subCategories, profile, actions, catMap, subCatMap, sortedAttendees} = this.props;
 
-    if (!attendees || typeof attendees !== 'object') return null
+    if (!attendees || typeof attendees !== 'object' || !sortedAttendees) return null
+
+    console.log(sortedAttendees);
+
+
     return (
       <div>
         <h4>Event Network</h4>

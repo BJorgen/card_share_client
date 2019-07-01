@@ -12,7 +12,7 @@ import Loading from './Common/Loading.jsx'
 
 class Main extends Component {
   render(){
-    const { profile, categories, subCategories, actions, attendees, event, socket, catMap, subCatMap } = this.props;
+    const { profile, categories, subCategories, actions, attendees, event, socket, catMap, subCatMap, sortedAttendees} = this.props;
     let isProfileSetUp = profile && profile.tagline && ((profile.wants && profile.wants.length) || (profile.haves && profile.haves.length));
 
     if(profile && categories && !isProfileSetUp){
@@ -34,7 +34,7 @@ class Main extends Component {
           )}/>
           <Route path="/network" render={(routeProps) => (
             <NetworkPage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap}
-            subCatMap={subCatMap} />
+            subCatMap={subCatMap} sortedAttendees={sortedAttendees}/>
           )}/>
           <Route path="/messages" render={(routeProps) => (
             <MessagePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile} catMap={catMap}

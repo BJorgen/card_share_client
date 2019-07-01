@@ -68,7 +68,7 @@ class App extends Component {
         <Main loggedIn={this.state.loggedIn} actions={this.actions} categories={this.state.categories}
           subCategories={this.state.subCategories}  profile={this.state.attendee} attendees={this.state.attendees}
           user={this.state.user} event={this.state.event} socket={this.state.connection} catMap={this.state.catMap}
-          subCatMap={this.state.subCatMap} />
+          subCatMap={this.state.subCatMap} sortedAttendees={this.state.sortedAttendees}/>
         <div className="footer-fantom"></div>
         <Footer/>
       </div>

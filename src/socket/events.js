@@ -45,6 +45,7 @@ function eventHandlers(App) {
       App.setState({user : msg})
     },
 
+    // load my information on page load
     attendee : function(msg){
       let attendee=JSON.parse(msg);
       if( !attendee.error){
@@ -56,6 +57,7 @@ function eventHandlers(App) {
       }
     },
     
+    // updating information in the profile page
     update_attendee : function(msg){
       let attendee=JSON.parse(msg);
       if( !attendee.error){
@@ -67,12 +69,41 @@ function eventHandlers(App) {
       }
     },
 
+
+
+
+
+    // provide me with a list of the network
     attendees : function(msg){
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
+      
+      console.log("message from attendees event: ", msg);
+      const profile = App.state.attendee
+      console.log("profile wants: ", profile.wants)
+
+      Object.keys(msg).map((id) => {
+        const hp = msg[id].haves.filter(have => profile.wants.includes(have)).length
+        const wp = msg[id].wants.filter(want => profile.haves.includes(want)).length        
+
+
+        msg[id].metaData = {hp : hp, wp : wp, tp : (hp + wp)}
+        console.log(msg[id])
+        
+      })
+      
+
+      
+      const sorted = "I am a sorted list :) "
+      App.setState({sortedAttendees : sorted})
       App.setState({attendees : msg})
     },
 
+
+
+
+
+    // a person has joined the nework or has changed their tagline
     broadcast_attendee : function(msg){
       const attendee = JSON.parse(msg);
       const attendees = App.state.attendees;
@@ -85,6 +116,7 @@ function eventHandlers(App) {
       App.setState({attendees : attendees})
     },
 
+    // a person on the network has updated their interests
     broadcast_interests : function(msg){
       const attendee = JSON.parse(msg);
       const attendees = App.state.attendees;
@@ -95,6 +127,7 @@ function eventHandlers(App) {
       App.setState({attendees : attendees})
     },
 
+    // I have changed my interests
     attendee_interests : function(msg){
       msg=JSON.parse(msg);
       const attendee = App.state.attendee;
