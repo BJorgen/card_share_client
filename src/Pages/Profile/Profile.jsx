@@ -9,10 +9,9 @@ import Tab from 'react-bootstrap/Tab';
 class Profile extends Component {
 
   render(){
-    console.log("From profile: ", this.props.profile.last_name);
     const profile = this.props.profile;
-    const basicProfile = profile;
-    const connectedProfile = profile;
+    // const basicProfile = profile;
+    // const connectedProfile = profile;
 
     return (
       <div>

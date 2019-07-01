@@ -8,11 +8,11 @@ function connectionActions(attendee_id, connection, actions) {
     return (
       <Button onClick={() => actions.requestConnection(attendee_id)} variant="outline-success" size="sm">Connect</Button>
     );
-  } else if(connection.status == 'CONNECTED') {
+  } else if(connection.status === 'CONNECTED') {
     return (<span>CONNECTED</span>);
-  } else if(connection.status == 'DECLINED') {
+  } else if(connection.status === 'DECLINED') {
     return (<span>DECLINED</span>);
-  } else if(attendee_id == connection.sender) {
+  } else if(attendee_id === connection.sender) {
     return (
       <ButtonToolbar>
         <Button onClick={() => actions.acceptConnection(attendee_id)} variant="outline-success" size="sm">Accept</Button>
@@ -37,14 +37,14 @@ function cardActionsSend(attendee_id, cards, actions) {
 function cardActionsRecieved(attendee_id, cards, actions) {
   if (cards){
     const from = cards.from;
-    if(from == 'PENDING') {
+    if(from === 'PENDING') {
       return (
         <ButtonToolbar>
         <Button onClick={() => actions.saveCard(attendee_id)} variant="outline-success" size="sm">Save</Button>
         <Button onClick={() => actions.deleteCard(attendee_id)} variant="outline-danger" size="sm">Delete</Button>
       </ButtonToolbar>
       );
-    } else if (cards.from == 'SAVED') {
+    } else if (cards.from === 'SAVED') {
       return (
         <Button onClick={() => actions.deleteCard(attendee_id)} variant="outline-success" size="sm">Delete</Button>
       )
@@ -71,22 +71,3 @@ class CardActions extends Component {
 
 export default CardActions;
 
-{/*
-connection: {"sender":1000002,"status":"SENT"}
-
----> if(!attendee.connection) {
-  <button onClick={() => this.requestConnection() } > Connect </button>
-  
-  else if(attendee.connection.status != 'CONNECTED')
-  <button onClick={() => this.acceptConnection() } > Accept </button>
-  <button onClick={() => this.ignoreConnection() } > Ignore </button>
-
-}
-
-
-cards: {"from":"PENDING"}
-<button onClick={() => this.sendCard() } > sendCard </button>
-
-<button onClick={() => this.saveCard() } > saveCard </button>
-<button onClick={() => this.deleteCard() } > deleteCard </button> 
-*/}

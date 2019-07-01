@@ -11,7 +11,7 @@ function LoginButton(props) {
       <OAuth
       provider='linkedin'
       socket={props.socket}
-      event= {props.event}
+      event={props.event}
     />
     );
   }else{

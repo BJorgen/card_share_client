@@ -57,7 +57,7 @@ class App extends Component {
       <div>
         <Header showNotifications={this.showNotifications} socket={this.state.connection} user={this.state.user} logOut={() =>this.logOut()} event={this.state.event}/>
         <div className="footer-fantom"></div>
-        <button onClick={() => this.initData() } > Get ALL </button>
+        {/* <button onClick={() => this.initData() } > Get ALL </button> */}
 
         <Notifications
           show={this.state.modalShow}

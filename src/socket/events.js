@@ -21,10 +21,20 @@ function eventHandlers(App) {
     attendee : function(msg){
       let attendee=JSON.parse(msg);
       if( !attendee.error){
-        attendee.wants = !attendee.wants[0] === 'null' ? attendee.wants : [];
-        attendee.haves = !attendee.wants[0] === 'null' ? attendee.wants : [];
-        App.setState({attendee : attendee})
-      }else{
+        attendee.wants = !(attendee.wants[0] === 'null') ? attendee.wants : [];
+        attendee.haves = !(attendee.haves[0] === 'null') ? attendee.haves : [];
+        App.setState({attendee : attendee});
+      }else {
+        App.sendAlert(msg);
+      }
+    },
+    update_attendee : function(msg){
+      let attendee=JSON.parse(msg);
+      if( !attendee.error){
+        attendee.wants = App.state.attendee.wants;
+        attendee.haves = App.state.attendee.haves;
+        App.setState({attendee : attendee});
+      }else {
         App.sendAlert(msg);
       }
     },
@@ -63,6 +73,7 @@ function eventHandlers(App) {
       attendee.haves = msg.haves;
       attendee.wants = msg.wants;
       App.setState({attendee : attendee})
+      window.location.pathname = '/network'
     },
 
     categories : function(msg){
@@ -72,7 +83,6 @@ function eventHandlers(App) {
     },
 
     connection_change : function(msg){
-      console.log('connection change', msg)
       const notification = JSON.parse(msg);
       if(notification.error){
         alert(msg);
@@ -137,7 +147,6 @@ function eventHandlers(App) {
           attendees[sender_id].cards = cards;
         }
       }
-      console.log(App.state.attendees)
       App.setState({attendees});
     },
 

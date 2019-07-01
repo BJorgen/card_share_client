@@ -59,49 +59,53 @@ class Categories extends Component {
     }
 
     return (
-      <Accordion>
-        <Form onSubmit={submitCategories}>
-        {categories.map((category) => (
-        <Card>
-          <Card.Header>
-              <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                {category.name}
-              </Accordion.Toggle>          
-          </Card.Header>
+      <div>
+        <h4>Topics Selector</h4>
+        <p>Select 5 of each haves and wants</p>
+        <Accordion>
+          <Form onSubmit={submitCategories}>
+            {categories.map((category) => (
+            <Card>
+              <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                    {category.name}
+                  </Accordion.Toggle>          
+              </Card.Header>
 
-          <Accordion.Collapse eventKey="0">
-            <Card.Body>
-              <Row>
-                  <Col xs={6} md={6}> 
-                  </Col>
-                  <Col xs={3} md={3}>
-                    <Form.Text>Wants</Form.Text>
-                  </Col>
-                  <Col xs={3} md={3}>
-                    <Form.Text>Haves</Form.Text>                     
-                  </Col>
-                </Row>
-              {subCategories.filter(subCategory => subCategory.category_id === category.id).map((subCategory,component) => (             
-                <Row>
-                  <Col xs={6} md={6}>
-                    {subCategory.name}
-                  </Col>
-                  <Col xs={3} md={3}>
-                    {getCheckboxButton(subCategory.id, haveCategoryOnChange, "haves")}
-                  </Col>
-                  <Col xs={3} md={3}>
-                    {getCheckboxButton(subCategory.id, wantCategoryOnChange, "wants")}                   
-                  </Col>
-                </Row>
-              ))}
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-        ))}
-                      <Button as="input" type="submit" value="Submit" size="sm"/>
+              <Accordion.Collapse eventKey="0">
+                <Card.Body>
+                  <Row>
+                      <Col xs={6} md={6}> 
+                      </Col>
+                      <Col xs={3} md={3}>
+                        <Form.Text>Wants</Form.Text>
+                      </Col>
+                      <Col xs={3} md={3}>
+                        <Form.Text>Haves</Form.Text>                     
+                      </Col>
+                    </Row>
+                  {subCategories.filter(subCategory => subCategory.category_id === category.id).map((subCategory,component) => (             
+                    <Row>
+                      <Col xs={6} md={6}>
+                        {subCategory.name}
+                      </Col>
+                      <Col xs={3} md={3}>
+                        {getCheckboxButton(subCategory.id, haveCategoryOnChange, "haves")}
+                      </Col>
+                      <Col xs={3} md={3}>
+                        {getCheckboxButton(subCategory.id, wantCategoryOnChange, "wants")}                   
+                      </Col>
+                    </Row>
+                  ))}
+                </Card.Body>
+              </Accordion.Collapse>
+            </Card>
+            ))}
+            <Button as="input" type="submit" value="Submit" size="sm"/>
 
-        </Form>
-      </Accordion>
+          </Form>
+        </Accordion>
+      </div>
     );
   }
 }

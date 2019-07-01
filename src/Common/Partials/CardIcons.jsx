@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 class CardIcons extends Component {
 
   render(){
-    const attendee = this.props.attendee;
+    // const attendee = this.props.attendee;
 
     return (
       <span>
