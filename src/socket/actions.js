@@ -90,6 +90,12 @@ module.exports = function(App) {
       if(! (this.state.categories && this.state.subCategories) ){
         App.getCategories();
       }
+    },
+    // TODO not a socket action
+    deleteNotification(id){
+      const notifications = App.state.notifications;
+      delete notifications[id];
+      App.setState({notifications});
     }
   }
 }

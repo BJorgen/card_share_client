@@ -65,6 +65,7 @@ class App extends Component {
           show={this.state.modalShow}
           notifications={this.state.notifications}
           onHide={modalClose}
+          deleteNotification={this.actions.deleteNotification}
         />
         <Main loggedIn={this.state.loggedIn} actions={this.actions} categories={this.state.categories}
           subCategories={this.state.subCategories}  profile={this.state.attendee} attendees={this.state.attendees}
@@ -73,10 +74,6 @@ class App extends Component {
         <Footer/>
       </div>
     );
-  }
-
-  deleteNotification(id){
-
   }
 
   getNextNotificationId = function(){
