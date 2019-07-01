@@ -21,7 +21,6 @@ function eventHandlers(App) {
         notifications[id] = notification;
         break;
       case 'CONNECTION' :
-        console.log('in connection')
         // if status is connected an other upate will come from the server with basic details
         if( (! obj.isNotification ) || obj.status !== 'SENT'){
           return;
@@ -34,6 +33,19 @@ function eventHandlers(App) {
         };
         notifications[id] = notification;
         break;
+      case 'CONNECTED' :
+        if( obj.isNotification){ 
+          notification = {
+            id : App.getNextNotificationId(),
+            content : `You are now connected with ${obj.first_name}`,
+            type : 'CONNECTION', 
+            source_id : obj.responder_id
+          };
+          notifications[id] = notification;
+      }
+        break;
+      default :
+        break
     }
     App.setState({notifications})
   }
@@ -147,6 +159,7 @@ function eventHandlers(App) {
       if(attendees[id]){
         attendees[id].photo = photo;
         attendees[id].first_name = first_name;
+        addNotification('CONNECTED', {...(attendees[id]), connection_id : notification.id, isNotification : notification.isNotification});
       }
       App.setState({attendees});
     },
