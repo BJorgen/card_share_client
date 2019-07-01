@@ -19,13 +19,15 @@ function eventHandlers(App) {
     },
 
     attendee : function(msg){
-
       let attendee=JSON.parse(msg);
       if( !attendee.error){
         attendee.wants = !(attendee.wants[0] === 'null') ? attendee.wants : [];
         attendee.haves = !(attendee.haves[0] === 'null') ? attendee.haves : [];
-        App.setState({attendee : attendee})
-      }else{
+        App.setState({attendee : attendee});
+        if (attendee.tagline && !(attendee.wants.length || attendee.haves.length)) {
+          window.location.pathname = '/categoryselector'
+        }
+      }else {
         App.sendAlert(msg);
       }
     },
