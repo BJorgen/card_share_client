@@ -9,17 +9,53 @@ const getOtherAttendeeId = function(incomeingId1, incomeingId2, id){
   return incomeingId1;
 }
 
-
-
 function eventHandlers(App) {
 
+  // add a notification for the state
+  // there is an isNotification flag for events which are also sent back to the actor 
   const addNotification = function(type, obj){
     const notifications = App.state.notifications;
+    let notification;
     switch(type){
       case 'message_received'  :
-        const notification = {content : `You got a new message from ${obj.sender_id}`, type : 'message_received', id : obj.sender_id}
-        notifications.push(notification)
+        const id = App.getNextNotificationId();
+        notification = {id : id, content : `You have a new message from ${obj.sender_id}`, type : 'MESSAGE', source_id : obj.sender_id}
+        notifications[id] = notification;
         break;
+      case 'CONNECTION' :
+        // if status is connected an other upate will come from the server with basic details
+        if( (! obj.isNotification ) || obj.status !== 'SENT'){
+          return;
+        }
+        notification = {
+          id : App.getNextNotificationId(),
+          content : `You have a new connection request from ${obj.requester_id}`,
+          type : 'CONNECTION', 
+          source_id : obj.requester_id
+        };
+        notifications[notification.id] = notification;
+        break;
+      case 'CONNECTED' :
+        if( obj.isNotification){ 
+          notification = {
+            id : App.getNextNotificationId(),
+            content : `You are now connected with ${obj.first_name}`,
+            type : 'CONNECTION', 
+            source_id : obj.responder_id
+          };
+          notifications[notification.id] = notification;
+        }
+        break;
+      case 'CARD_RECEIVED' :
+          notification = {
+            id : App.getNextNotificationId(),
+            content : `You have received a card from ${obj.first_name} ${obj.last_name}`,
+            type : 'CARD', 
+            source_id : obj.responder_id
+          };
+          notifications[notification.id] = notification;
+      default :
+        break
     }
     App.setState({notifications})
   }
@@ -137,6 +173,7 @@ function eventHandlers(App) {
       const attendees = App.state.attendees;
       if(attendees[otherAttendeeId]){
         attendees[otherAttendeeId].connection = {sender : requester_id, status : status};
+        addNotification('CONNECTION', notification);
       }
       App.setState({attendees});
     },
@@ -148,6 +185,7 @@ function eventHandlers(App) {
       if(attendees[id]){
         attendees[id].photo = photo;
         attendees[id].first_name = first_name;
+        addNotification('CONNECTED', {...(attendees[id]), connection_id : notification.id, isNotification : notification.isNotification});
       }
       App.setState({attendees});
     },
@@ -166,6 +204,7 @@ function eventHandlers(App) {
         target.position = position;
         target.company = company;
         target['linkedin-link'] = notification['linkedin-link'];
+        addNotification('CARD_RECEIVED', {...target, card_share_id : notification.id});
       }
       App.setState({attendees});
     },
