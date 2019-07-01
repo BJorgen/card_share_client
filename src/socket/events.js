@@ -24,9 +24,6 @@ function eventHandlers(App) {
         attendee.wants = !(attendee.wants[0] === 'null') ? attendee.wants : [];
         attendee.haves = !(attendee.haves[0] === 'null') ? attendee.haves : [];
         App.setState({attendee : attendee});
-        if (attendee.tagline && !(attendee.wants.length || attendee.haves.length)) {
-          window.location.pathname = '/categoryselector'
-        }
       }else {
         App.sendAlert(msg);
       }
@@ -111,7 +108,6 @@ function eventHandlers(App) {
           attendees[sender_id].cards = cards;
         }
       }
-      console.log(App.state.attendees)
       App.setState({attendees});
     },
 

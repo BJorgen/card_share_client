@@ -13,7 +13,6 @@ class ConnectedCard extends Component {
 
   render(){
     const profile = this.props.profile;
-    console.log(profile)
     return (
       <Card>
         <Card.Header>

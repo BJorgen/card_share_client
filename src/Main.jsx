@@ -15,23 +15,13 @@ class Main extends Component {
     let isProfileSetUp = profile && profile.tagline && (profile.wants && profile.wants.length || profile.haves && profile.haves.length);
 
     if(profile && categories && !isProfileSetUp){
-      if (!profile.tagline) {
-        return (
-          <Switch>
-          <Route path="/" render={(routeProps) => (
-            <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
-          )}/>
-          </Switch>
-        )
-      }  else {
-        return (
-          <Switch>
-          <Route path="/" render={(routeProps) => (
-            <Categories {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
-          )}/>
-          </Switch>
-        )
-      }
+      return (
+        <Switch>
+        <Route path="/" render={(routeProps) => (
+          <ProfilePage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions}/>
+        )}/>
+        </Switch>
+      )
     } else if(profile && categories){
     return (
       <main style={{ minHeight: '70vh' }}>        
