@@ -74,7 +74,7 @@ function Header(props) {
 
           <div className={classes.grow} />
           <IconButton aria-label="Show 17 new notifications" color="inherit" onClick={props.showNotifications}>
-            <Badge badgeContent={5} color="secondary">
+            <Badge badgeContent={props.notifications.length} color="secondary">
               <NotificationsIcon />
             </Badge>
           </IconButton>
