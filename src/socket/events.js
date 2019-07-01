@@ -130,25 +130,17 @@ function eventHandlers(App) {
     attendees : function(msg){
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
-      
-      console.log("message from attendees event: ", msg);
       const profile = App.state.attendee
-      console.log("profile wants: ", profile.wants)
 
+      let points = []
       Object.keys(msg).map((id) => {
         const hp = msg[id].haves.filter(have => profile.wants.includes(have)).length
-        const wp = msg[id].wants.filter(want => profile.haves.includes(want)).length        
-
-
+        const wp = msg[id].wants.filter(want => profile.haves.includes(want)).length
         msg[id].metaData = {hp : hp, wp : wp}
-        console.log(msg[id])
-        
+        points.push({id : id, hp : hp, wp : wp})      
       })
       
-
-      
-      const sorted = "I am a sorted list :) "
-      App.setState({sortedAttendees : sorted})
+      App.setState({pointsAttendees : points})
       App.setState({attendees : msg})
     },
 
