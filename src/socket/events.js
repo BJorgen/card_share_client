@@ -30,7 +30,6 @@ function eventHandlers(App) {
     let notification;
     switch(type){
       case 'message_received'  :
-        console.log(obj)
         const id = App.getNextNotificationId();
         notification = {
           id : id,
@@ -89,7 +88,6 @@ function eventHandlers(App) {
   return {
 
     error_message : function(msg){
-      console.log('ERROR', msg);
     },
 
     user : function(msg){

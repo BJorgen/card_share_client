@@ -3,24 +3,26 @@ import BusinessCard from '../../Common/BusinessCard.jsx';
 import CardDeck from 'react-bootstrap/CardDeck'
 
 class NetworkPage extends Component {
+  constructor() {
+    super();
+    this.state = {
+      sortFilter: 'wp'
+    };
+  }
 
   render(){
     const { attendees , categories, subCategories, profile, actions, catMap, subCatMap, pointsAttendees} = this.props;
 
     if (!attendees || typeof attendees !== 'object' || !pointsAttendees) return null
 
-    console.log("from the network, points ", pointsAttendees);
+    const sortLogic = { 
+      'hp': (a, b) => (b.hp - a.hp), 
+      'wp': (a, b) => (b.wp - a.wp), 
+      'tp': (a, b) => (b.hp + b.wp) - (a.hp + a.wp)
+    }
 
-    // function sortList(pointsAttendees, hp, wp) {
-
-
-    // }
-    // sorted.hp = pointsAttendees.sort((a, b) => (b.hp - a.hp))
-    // sorted.wp = pointsAttendees.sort((a, b) => (b.wp - a.wp))
-    // sorted.tp = pointsAttendees.sort((a, b) => ((b.hp + b.wp) - (a.hp + a.wp)))
-
-    const sorted = pointsAttendees.sort((a, b) => (b.hp - a.hp)).map(item => item.id)
-    console.log('SortedList', sorted)
+    // this.setState({sortFilter: 'wp'})
+    const sorted = pointsAttendees.sort(sortLogic[this.state.sortFilter]).map(item => item.id)
 
 
     return (
@@ -28,17 +30,35 @@ class NetworkPage extends Component {
         <h4>Event Network</h4>
         <CardDeck>
 
-          {Object.keys(attendees).map((attendee_key) => (
+          {sorted.map((attendee_key) => {
+            if (!attendees[attendee_key]) return null
+            return(
+              <BusinessCard
+              attendee={attendees[attendee_key]}
+              key={attendees[attendee_key].id}
+              categories={categories}
+              subCategories={subCategories}
+              profile={profile}
+              actions={actions}
+              catMap={catMap}
+              subCatMap={subCatMap}/>
+            )
+          })}
+
+          {/* {Object.keys(attendees).map((attendee_key) => (
             <BusinessCard
             attendee={attendees[attendee_key]}
-            key={ attendees[attendee_key].id }
+            key={attendees[attendee_key].id}
             categories={categories}
             subCategories={subCategories}
             profile={profile}
             actions={actions}
             catMap={catMap}
             subCatMap={subCatMap}/>
-          ))}
+          ))} */}
+
+
+
 
         </CardDeck>
       </div>

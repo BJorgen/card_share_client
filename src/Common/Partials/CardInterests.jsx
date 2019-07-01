@@ -26,6 +26,7 @@ class CardInterests extends Component {
         <ListGroup>
           <ListGroup.Item>Haves: {userHaves}</ListGroup.Item>
           <ListGroup.Item>Wants: {userWants}</ListGroup.Item>
+          <ListGroup.Item>hp:{userInfo.metaData.hp}, wp: {userInfo.metaData.wp}, tp: {userInfo.metaData.hp+userInfo.metaData.wp}</ListGroup.Item>
         </ListGroup>
       </Container>
     );
