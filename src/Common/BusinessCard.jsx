@@ -13,7 +13,7 @@ class BusinessCard extends Component {
 
   render(){
     const {attendee, categories, subCategories, profile, actions, catMap, subCatMap } = this.props;
-
+    const id = this.props.id || Math.random();    
     function cardHeader() {
       if (attendee.first_name) {
         return (
@@ -28,7 +28,7 @@ class BusinessCard extends Component {
     }
 
     return (
-      <Card>
+      <Card id={id}>
         {cardHeader()}
         <Card.Body>
           <Container>

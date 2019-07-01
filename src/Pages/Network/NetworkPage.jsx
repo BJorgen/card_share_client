@@ -15,6 +15,7 @@ class NetworkPage extends Component {
 
           {Object.keys(attendees).map((attendee_key) => (
             <BusinessCard
+            id={`network_${attendees[attendee_key].id}`}
             attendee={attendees[attendee_key]}
             key={ attendees[attendee_key].id }
             categories={categories}
