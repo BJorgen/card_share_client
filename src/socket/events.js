@@ -83,12 +83,20 @@ function eventHandlers(App) {
     App.setState({messages}); 
   }
 
-  function getAttendeePoints(attendee) {
-    const profile = App.state.attendee;
+  function getAttendeePoints(attendee, profile) {
     const hp = attendee.haves.filter(have => profile.wants.includes(have)).length;
     const wp = attendee.wants.filter(want => profile.haves.includes(want)).length;
     const points = {hp : hp, wp : wp};
     return points;
+  }
+
+  const calcAllTheStuff = function(profile, attendees){
+    let pointsAttendees = []
+    Object.keys(attendees).map((id) => {
+      attendees[id].metaData = getAttendeePoints(attendees[id], profile)
+      pointsAttendees.push({...attendees[id].metaData, id : id})      
+    })
+    return {pointsAttendees, attendees}
   }
 
   /***************************************************
@@ -108,6 +116,8 @@ function eventHandlers(App) {
     // load my information on page load
     attendee : function(msg){
       let attendee=JSON.parse(msg);
+
+      // NEED TO ADD POINTS I hope we do not need it here
       if( !attendee.error){
         attendee.wants = !(attendee.wants[0] === 'null') ? attendee.wants : [];
         attendee.haves = !(attendee.haves[0] === 'null') ? attendee.haves : [];
@@ -120,10 +130,10 @@ function eventHandlers(App) {
     // updating information in the profile page
     update_attendee : function(msg){
       let attendee=JSON.parse(msg);
-      if( !attendee.error){
+      if( !attendee.error){        
         attendee.wants = App.state.attendee.wants;
         attendee.haves = App.state.attendee.haves;
-        App.setState({attendee : attendee});
+        App.setState({attendee});
       }else {
         App.sendAlert(msg);
       }
@@ -131,17 +141,19 @@ function eventHandlers(App) {
 
     // provide me with a list of the network
     attendees : function(msg){
+
+
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
       
-      let points = []
+    /*  let points = []
       Object.keys(msg).map((id) => {
         msg[id].metaData = getAttendeePoints(msg[id])
         // need to do this for every attendee - will have to check if already in list
         points.push({...msg[id].metaData, id : id})      
-      })
-      
-      App.setState({pointsAttendees : points})
+      }) */
+      const {pointsAttendees} = calcAllTheStuff(App.state.attendee, msg);
+      App.setState({pointsAttendees})
       App.setState({attendees : msg})
     },
 
@@ -161,11 +173,14 @@ function eventHandlers(App) {
     broadcast_attendee : function(msg){
       const attendee = JSON.parse(msg);
       const attendees = App.state.attendees;
+
+      // NEED TO ADD POINTS DONE
       if(attendees[attendee.id]){
         attendees[attendee.id].id = attendee.id;
         attendees[attendee.id].tagline = attendee.tagline;
       }else{
         attendees[attendee.id] = attendee;
+        attendees[attendee.id].metaData =  {hp : 0, wp : 0}
       }
       App.setState({attendees : attendees})
     },
@@ -174,20 +189,37 @@ function eventHandlers(App) {
     broadcast_interests : function(msg){
       const attendee = JSON.parse(msg);
       const attendees = App.state.attendees;
+      const pointsAttendees = App.state.pointsAttendees;
+      // NEED TO ADD POINTS DONE
       if(attendees[attendee.id]){
         attendees[attendee.id].haves = attendee.haves;
         attendees[attendee.id].wants = attendee.wants;
+        attendees[attendee.id].metaData = getAttendeePoints(attendee, App.state.attendee);
+        let found = false;
+        pointsAttendees.forEach(pointObj => {
+          if(pointObj.id === attendee.id){
+            found = true;
+            pointObj.hp = attendees[attendee.id].metaData.hp;
+            pointObj.wp = attendees[attendee.id].metaData.wp;
+          }
+        });
+        if(! found){
+          pointsAttendees.push({id : attendee.id, hp : attendees[attendee.id].metaData.hp, wp : attendees[attendee.id].metaData.wp})
+        }
       }
-      App.setState({attendees : attendees})
+      App.setState({attendees, pointsAttendees})
     },
 
     // I have changed my interests
     attendee_interests : function(msg){
       msg=JSON.parse(msg);
       const attendee = App.state.attendee;
+
+      // NEED TO ADD POINTS DONE
       attendee.haves = msg.haves;
       attendee.wants = msg.wants;
-      App.setState({attendee : attendee})
+      const {pointsAttendees, attendees} = calcAllTheStuff(attendee, this.state.attendees);
+      App.setState({attendee, pointsAttendees, attendees});
       window.location.pathname = '/network'
     },
 
