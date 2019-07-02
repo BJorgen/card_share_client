@@ -71,6 +71,7 @@ function eventHandlers(App) {
             link : 'network'
           };
           notifications[notification.id] = notification;
+          break;
       default :
         break
     }
@@ -85,6 +86,9 @@ function eventHandlers(App) {
   }
 
   function getAttendeePoints(attendee, profile) {
+    if(! (profile.haves && profile.wants)){
+      return {hp : 0, wp : 0}
+    }
     const hp = attendee.haves.filter(have => profile.wants.includes(have)).length;
     const wp = attendee.wants.filter(want => profile.haves.includes(want)).length;
     const points = {hp : hp, wp : wp};
