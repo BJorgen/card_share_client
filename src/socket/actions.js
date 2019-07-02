@@ -50,6 +50,20 @@ module.exports = function(App) {
     },
   
     deleteCard(attendee_id){
+      const attendees = App.state.attendees;
+      if(attendees[attendee_id]){
+        const attendee = attendees[attendee_id];
+        delete attendee.email_address
+        delete attendee.last_name
+        delete attendee.phone_number
+        delete attendee.position
+        delete attendee.company
+        if( ! (attendee.connection && attendee.connection.status === "CONNECTED") ){
+          delete attendee.first_name
+          delete attendee.photo
+        }
+      }
+      App.setState({attendees});
       App.state.connection.emit('delete_card', attendee_id);
     },
   
