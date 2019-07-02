@@ -35,7 +35,7 @@ openPopup() {
   const width = 600, height = 600
   const left = (window.innerWidth / 2) - (width / 2)
   const top = (window.innerHeight / 2) - (height / 2)
-  const url = `http://127.0.0.1:8081/auth/linkedin?socketId=${socketId}&eventId=${eventId}`
+  const url = `${this.props.endpoint}/auth/linkedin?socketId=${socketId}&eventId=${eventId}`
         
 
   return window.open(url, '',       

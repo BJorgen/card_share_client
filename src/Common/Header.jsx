@@ -79,7 +79,7 @@ function Header(props) {
             </Badge>
           </IconButton>
 
-          <LoginButton  socket={props.socket} event={props.event}/>
+          <LoginButton  socket={props.socket} event={props.event} endpoint={props.endpoint}/>
 
         </Toolbar>
       </AppBar>
