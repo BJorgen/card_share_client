@@ -79,7 +79,8 @@ function eventHandlers(App) {
 
   const addMessage = function(attendee_id, message){
     const messages = App.state.messages;
-    messages[attendee_id] = messages[attendee_id] ? messages[attendee_id].concat(message) : [message];
+    const messageObj = messages[attendee_id] ? messages[attendee_id].concat(message) : [message]
+    messages[attendee_id] = messageObj;
     App.setState({messages}); 
   }
 
@@ -165,6 +166,10 @@ function eventHandlers(App) {
         attendees[attendee.id].metaData =  {hp : 0, wp : 0}
       }
       App.setState({attendees : attendees})
+    },
+
+    messages_load : function(msg){
+      JSON.parse(msg).forEach(message => addMessage(getOtherAttendeeId(message.sender_id, message.receiver_id, App.state.attendee.id), message));
     },
 
     // a person on the network has updated their interests

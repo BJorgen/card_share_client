@@ -7,6 +7,7 @@ module.exports = function(App) {
       this.getAttendee();
       this.getCategories();
       this.getAttendees();
+      this.loadMessages();
     },
 
     getUser(){
@@ -29,6 +30,10 @@ module.exports = function(App) {
       App.state.connection.emit('get_attendees',1000001);
     },
   
+    loadMessages(){
+      App.state.connection.emit('load_messages','');
+    },
+
     requestConnection(attendee_id){
       App.state.connection.emit('request_connection', attendee_id);
     },
@@ -98,12 +103,13 @@ module.exports = function(App) {
       if(! App.state.attendee){
         App.getAttendee();
       }
-      if(! App.state.attendees){
-        App.getAttendees();
-      }
       if(! (this.state.categories && this.state.subCategories) ){
         App.getCategories();
       }
+      if(! App.state.attendees){
+        App.getAttendees();
+      }
+      App.loadMessages();
     },
     // TODO not a socket action
     deleteNotification(id){
