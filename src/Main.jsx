@@ -12,7 +12,7 @@ import Loading from './Common/Loading.jsx'
 
 class Main extends Component {
   render(){
-    const { profile, categories, subCategories, actions, attendees, event, socket, catMap, subCatMap, pointsAttendees} = this.props;
+    const { profile, categories, subCategories, actions, attendees, event, socket, catMap, subCatMap, pointsAttendees, messages} = this.props;
     let isProfileSetUp = profile && profile.tagline && ((profile.wants && profile.wants.length) || (profile.haves && profile.haves.length));
 
     if(profile && categories && !isProfileSetUp){
@@ -37,11 +37,10 @@ class Main extends Component {
             subCatMap={subCatMap} pointsAttendees={pointsAttendees}/>
           )}/>
           <Route path="/messages" render={(routeProps) => (
-            <MessagePage {...routeProps} categories={categories} subCategories={subCategories} profile={profile} catMap={catMap}
-            subCatMap={subCatMap} />
+            <MessagePage {...routeProps} profile={profile} attendees={attendees} messages={messages}/>
           )}/>
           <Route path="/contacts" render={(routeProps) => (
-            <ContactsPage {...routeProps} actions={actions} attendees={attendees} catMap={catMap}
+            <ContactsPage {...routeProps} actions={actions} actions={actions} attendees={attendees} catMap={catMap}
             subCatMap={subCatMap} />
           )}/>
           <Route path="/editprofile" render={(routeProps) => (

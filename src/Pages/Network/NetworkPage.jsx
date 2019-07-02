@@ -4,7 +4,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import SimpleExpansionPanel from './SimpleExpansionPanel.jsx'
+import SimpleExpansionPanel from '../../Common/Partials/SimpleExpansionPanel.jsx'
 
 class NetworkPage extends Component {
   constructor() {
@@ -68,7 +68,7 @@ class NetworkPage extends Component {
           </Grid>
         </Grid>
 
-        <SimpleExpansionPanel title={"Show My Connections"}>
+        <SimpleExpansionPanel header={<h5>Show My Connections</h5>}>
           <CardDeck>
             {splitConnectedNetwork(sorted)['connected']}
           </CardDeck>
