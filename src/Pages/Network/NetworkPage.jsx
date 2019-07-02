@@ -4,6 +4,7 @@ import CardDeck from 'react-bootstrap/CardDeck'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import SimpleExpansionPanel from './SimpleExpansionPanel.jsx'
 
 class NetworkPage extends Component {
   constructor() {
@@ -26,6 +27,31 @@ class NetworkPage extends Component {
 
     const sorted = pointsAttendees.sort(sortLogic[this.state.sortFilter]).map(item => item.id)
 
+    // Returns an object with array of connected cards and 
+    function splitConnectedNetwork(sorted){
+      const connected = []
+      const notConnected = []
+      {sorted.map((attendee_key) => {
+        if (attendees[attendee_key]) {
+          const attendee = attendees[attendee_key]
+          const isConnected = attendee.connection && (attendee.connection.status === 'CONNECTED')
+          const card = 
+            <BusinessCard
+            attendee={attendee}
+            key={attendee.id}
+            categories={categories}
+            subCategories={subCategories}
+            profile={profile}
+            actions={actions}
+            catMap={catMap}
+            subCatMap={subCatMap}/>
+      
+          if(isConnected) {connected.push(card)} else {notConnected.push(card)}
+        }
+      })}
+      return {connected, notConnected}
+    }
+
 
     return (
       <div>
@@ -42,56 +68,16 @@ class NetworkPage extends Component {
           </Grid>
         </Grid>
 
-        <CardDeck>
-
-          <h5>CONNECTED</h5>
-          {sorted.map((attendee_key) => {
-            if (!attendees[attendee_key]) return null
-            const attendee = attendees[attendee_key]
-            const isConnected = attendee.connection && (attendee.connection.status === 'CONNECTED')
-            if(!isConnected) return null
-            return(
-              <BusinessCard
-              attendee={attendee}
-              key={attendee.id}
-              categories={categories}
-              subCategories={subCategories}
-              profile={profile}
-              actions={actions}
-              catMap={catMap}
-              subCatMap={subCatMap}/>
-            )
-          })}
-
-        </CardDeck>
+        <SimpleExpansionPanel title={"My Connections"}>
+          <CardDeck>
+            {splitConnectedNetwork(sorted)['connected']}
+          </CardDeck>
+        </SimpleExpansionPanel>
         
-
         <CardDeck>
-
-          <h5>NOT CONNECTED</h5>
-          {sorted.map((attendee_key) => {
-            if (!attendees[attendee_key]) return null
-            const attendee = attendees[attendee_key]
-            const isConnected = attendee.connection && (attendee.connection.status === 'CONNECTED')
-            if(isConnected) return null
-            return(
-              <BusinessCard
-              attendee={attendee}
-              key={attendee.id}
-              categories={categories}
-              subCategories={subCategories}
-              profile={profile}
-              actions={actions}
-              catMap={catMap}
-              subCatMap={subCatMap}/>
-            )
-          })}
-
+          {splitConnectedNetwork(sorted)['notConnected']}
         </CardDeck>
 
-
-
-        
       </div>
     );
   }
