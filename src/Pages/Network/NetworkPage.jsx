@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import BusinessCard from '../../Common/BusinessCard.jsx';
 import CardDeck from 'react-bootstrap/CardDeck'
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 class NetworkPage extends Component {
   constructor() {
@@ -28,7 +31,18 @@ class NetworkPage extends Component {
     return (
       <div>
         <h4>Event Network</h4>
-        
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+          </Grid>
+          <Grid item xs={12}>
+            <ButtonGroup fullWidth aria-label="Full width outlined button group" variant="contained" >
+              <Button onClick={() => this.setState({sortFilter: 'tp'})}>All</Button>
+              <Button onClick={() => this.setState({sortFilter: 'hp'})}>Haves</Button>
+              <Button onClick={() => this.setState({sortFilter: 'wp'})}>Wants</Button>
+            </ButtonGroup>
+          </Grid>
+        </Grid>
+
         <CardDeck>
 
           {sorted.map((attendee_key) => {
