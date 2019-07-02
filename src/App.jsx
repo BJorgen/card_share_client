@@ -11,8 +11,8 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      endpoint: "http://127.0.0.1:8081",
-      //endpoint: "https://smart-lynxz.herokuapp.com",
+      // endpoint: "http://127.0.0.1:8081",
+      endpoint: "https://smart-lynxz.herokuapp.com",
       modalShow: false,
       connection: null,
       user : null,
