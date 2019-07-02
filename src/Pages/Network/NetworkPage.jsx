@@ -26,6 +26,7 @@ class NetworkPage extends Component {
 
     const sorted = pointsAttendees.sort(sortLogic[this.state.sortFilter]).map(item => item.id)
 
+
     return (
       <div>
         <h4>Event Network</h4>
@@ -43,12 +44,16 @@ class NetworkPage extends Component {
 
         <CardDeck>
 
+          <h5>CONNECTED</h5>
           {sorted.map((attendee_key) => {
             if (!attendees[attendee_key]) return null
+            const attendee = attendees[attendee_key]
+            const isConnected = attendee.connection && (attendee.connection.status === 'CONNECTED')
+            if(!isConnected) return null
             return(
               <BusinessCard
-              attendee={attendees[attendee_key]}
-              key={attendees[attendee_key].id}
+              attendee={attendee}
+              key={attendee.id}
               categories={categories}
               subCategories={subCategories}
               profile={profile}
@@ -59,6 +64,34 @@ class NetworkPage extends Component {
           })}
 
         </CardDeck>
+        
+
+        <CardDeck>
+
+          <h5>NOT CONNECTED</h5>
+          {sorted.map((attendee_key) => {
+            if (!attendees[attendee_key]) return null
+            const attendee = attendees[attendee_key]
+            const isConnected = attendee.connection && (attendee.connection.status === 'CONNECTED')
+            if(isConnected) return null
+            return(
+              <BusinessCard
+              attendee={attendee}
+              key={attendee.id}
+              categories={categories}
+              subCategories={subCategories}
+              profile={profile}
+              actions={actions}
+              catMap={catMap}
+              subCatMap={subCatMap}/>
+            )
+          })}
+
+        </CardDeck>
+
+
+
+        
       </div>
     );
   }
