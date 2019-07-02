@@ -145,29 +145,11 @@ function eventHandlers(App) {
 
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
-      
-    /*  let points = []
-      Object.keys(msg).map((id) => {
-        msg[id].metaData = getAttendeePoints(msg[id])
-        // need to do this for every attendee - will have to check if already in list
-        points.push({...msg[id].metaData, id : id})      
-      }) */
+
       const {pointsAttendees} = calcAllTheStuff(App.state.attendee, msg);
       App.setState({pointsAttendees})
       App.setState({attendees : msg})
     },
-
-
-    //THIS IS A WORK IN PROGRESS
-    // attendee.metaData = getAttendeePoints(attendee)
-    // const attendees = App.state.attendees
-    // const pointsAttendees = App.state.pointsAttendees
-
-    // puth the updated info into the attendees and pointsAttendees
-
-    // App.setState({pointsAttendees : points})
-    // App.setState({attendees : msg})
-
 
     // a person has joined the nework or has changed their tagline
     broadcast_attendee : function(msg){
@@ -212,14 +194,16 @@ function eventHandlers(App) {
 
     // I have changed my interests
     attendee_interests : function(msg){
+      console.log('i am here interest updates', App.state)
       msg=JSON.parse(msg);
       const attendee = App.state.attendee;
 
       // NEED TO ADD POINTS DONE
       attendee.haves = msg.haves;
       attendee.wants = msg.wants;
-      const {pointsAttendees, attendees} = calcAllTheStuff(attendee, this.state.attendees);
+      const {pointsAttendees, attendees} = calcAllTheStuff(attendee, App.state.attendees);
       App.setState({attendee, pointsAttendees, attendees});
+      console.log('from update interest', pointsAttendees, attendees, attendee)
       window.location.pathname = '/network'
     },
 

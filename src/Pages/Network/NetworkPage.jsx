@@ -28,6 +28,7 @@ class NetworkPage extends Component {
     return (
       <div>
         <h4>Event Network</h4>
+        
         <CardDeck>
 
           {sorted.map((attendee_key) => {
@@ -68,10 +69,3 @@ class NetworkPage extends Component {
 }
 
 export default NetworkPage;
-
-
-// {this.props.attendees.map((attendee) =>
-//   <BusinessCard
-//     attendee={attendee}
-//     key={ attendee.id }/>
-// )}
