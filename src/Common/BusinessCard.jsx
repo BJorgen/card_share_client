@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import CardActions from './Partials/CardActions.jsx';
-import CardIcons from './Partials/CardIcons.jsx';
+// import CardIcons from './Partials/CardIcons.jsx';
 import CardInterests from './Partials/CardInterests.jsx';
 import CardContact from './Partials/CardContact.jsx';
 import Card from 'react-bootstrap/Card';
@@ -14,6 +14,7 @@ class BusinessCard extends Component {
   render(){
     const {attendee, categories, subCategories, profile, actions, catMap, subCatMap } = this.props;
     const id = this.props.id || Math.random();    
+    
     function cardHeader() {
       if (attendee.first_name) {
         return (
@@ -21,16 +22,14 @@ class BusinessCard extends Component {
             <Card.Title>
               {attendee.first_name} {attendee.last_name}
             </Card.Title>
-            <CardIcons attendee={attendee}/>
           </Card.Header>
-      ); 
+        ); 
       }
     }
 
-    return (
-      <Card id={id}>
-        {cardHeader()}
-        <Card.Body>
+    function cardImageAndInterests() {
+      if (attendee.photo) {
+        return (
           <Container>
             <Row>
               <Col xs={4} md={4}>
@@ -41,18 +40,41 @@ class BusinessCard extends Component {
               </Col>
             </Row>
           </Container>
+        ); 
+      } else {
+        return (
+          <Container>
+            <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
+        </Container>
+        )
+      }
+    }
 
-          <CardContact attendee={attendee}/>
 
+    function cardFooter(){
+      if (!(attendee.id === profile.id)) {
+        return (
+          <Card.Footer>
+            <CardActions actions={actions} attendee={attendee}/>
+          </Card.Footer>
+        ); 
+      }
+    }
+
+
+    return (
+      <Card id={id}>
+        {cardHeader()}
+
+        <Card.Body>
+          {cardImageAndInterests()}
           <Card.Text>
             {attendee.tagline}
           </Card.Text>
-
+          <CardContact attendee={attendee}/>
         </Card.Body>
 
-        <Card.Footer>
-          <CardActions actions={actions} attendee={attendee}/>
-        </Card.Footer>
+        {cardFooter()}
       </Card>
     );
   }
