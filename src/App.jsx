@@ -12,6 +12,7 @@ class App extends Component {
     super();
     this.state = {
       endpoint: "http://127.0.0.1:8081",
+      //endpoint: "https://smart-lynxz.herokuapp.com",
       modalShow: false,
       connection: null,
       user : null,
@@ -70,7 +71,7 @@ class App extends Component {
         <Main loggedIn={this.state.loggedIn} actions={this.actions} categories={this.state.categories}
           subCategories={this.state.subCategories}  profile={this.state.attendee} attendees={this.state.attendees}
           user={this.state.user} event={this.state.event} socket={this.state.connection} catMap={this.state.catMap}
-          subCatMap={this.state.subCatMap} pointsAttendees={this.state.pointsAttendees}/>
+          subCatMap={this.state.subCatMap} pointsAttendees={this.state.pointsAttendees} endpoint={this.state.endpoint}/>
         <div className="footer-fantom"></div>
         <Footer/>
       </div>
