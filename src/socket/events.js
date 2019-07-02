@@ -80,7 +80,15 @@ function eventHandlers(App) {
     const messages = App.state.messages;
     messages[attendee_id] = messages[attendee_id] ? messages[attendee_id].concat(message) : [message];
     App.setState({messages}); 
-  } 
+  }
+
+  function getAttendeePoints(attendee) {
+    const profile = App.state.attendee;
+    const hp = attendee.haves.filter(have => profile.wants.includes(have)).length;
+    const wp = attendee.wants.filter(want => profile.haves.includes(want)).length;
+    const points = {hp : hp, wp : wp};
+    return points;
+  }
 
   /***************************************************
    *               Event Handlers
@@ -120,22 +128,16 @@ function eventHandlers(App) {
       }
     },
 
-
-
-
-
     // provide me with a list of the network
     attendees : function(msg){
       // App.sendAlert(msg);
       msg=JSON.parse(msg);
-      const profile = App.state.attendee
-
+      
       let points = []
       Object.keys(msg).map((id) => {
-        const hp = msg[id].haves.filter(have => profile.wants.includes(have)).length
-        const wp = msg[id].wants.filter(want => profile.haves.includes(want)).length
-        msg[id].metaData = {hp : hp, wp : wp}
-        points.push({id : id, hp : hp, wp : wp})      
+        msg[id].metaData = getAttendeePoints(msg[id])
+        // need to do this for every attendee - will have to check if already in list
+        points.push({...msg[id].metaData, id : id})      
       })
       
       App.setState({pointsAttendees : points})
@@ -143,7 +145,15 @@ function eventHandlers(App) {
     },
 
 
+    //THIS IS A WORK IN PROGRESS
+    // attendee.metaData = getAttendeePoints(attendee)
+    // const attendees = App.state.attendees
+    // const pointsAttendees = App.state.pointsAttendees
 
+    // puth the updated info into the attendees and pointsAttendees
+
+    // App.setState({pointsAttendees : points})
+    // App.setState({attendees : msg})
 
 
     // a person has joined the nework or has changed their tagline
