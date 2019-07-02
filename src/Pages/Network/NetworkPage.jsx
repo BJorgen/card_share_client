@@ -68,7 +68,7 @@ class NetworkPage extends Component {
           </Grid>
         </Grid>
 
-        <SimpleExpansionPanel title={"My Connections"}>
+        <SimpleExpansionPanel title={"Show My Connections"}>
           <CardDeck>
             {splitConnectedNetwork(sorted)['connected']}
           </CardDeck>
