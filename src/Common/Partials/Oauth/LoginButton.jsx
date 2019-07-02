@@ -12,6 +12,7 @@ function LoginButton(props) {
       provider='linkedin'
       socket={props.socket}
       event={props.event}
+      endpoint={props.endpoint}
     />
     );
   }else{
