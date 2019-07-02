@@ -10,7 +10,6 @@ class Profile extends Component {
 
   render(){
     const { categories, subCategories, profile, actions, catMap, subCatMap} = this.props;
-    console.log(profile);
     const {tagline, haves, wants, id, first_name, photo} = profile
     const basicProfile = {tagline, haves, wants, id};
     const connectedProfile = {tagline, haves, wants, id, first_name, photo};
