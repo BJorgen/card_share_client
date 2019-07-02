@@ -14,6 +14,10 @@ class CardInterests extends Component {
       userInfo = profile;
     }
 
+    if (attendee.id === profile.id) {
+      userInfo.metaData = {hp: userInfo.haves.length, wp:userInfo.wants.length}
+    }
+
     // TODO: Maybe find a way to remove
     if (!catMap || !subCatMap) return null
 
