@@ -81,18 +81,3 @@ class BusinessCard extends Component {
 }
 
 export default BusinessCard;
-
-
-// "id":1000003
-// "user_id":1000003
-// "event_id":1000001
-// "email_address":"gi@gmail.com"
-// "first_name":"Gi"
-// "last_name":"Gilast"
-// "position":null
-// "company":null
-// "linkedin-link":"https://www.linkedin.com"
-// "tagline":null
-
-// "haves":["1000008","1000010","1000016","1000019","1000023"]
-// "wants":["1000008","1000010","1000016","1000019","1000023"]
