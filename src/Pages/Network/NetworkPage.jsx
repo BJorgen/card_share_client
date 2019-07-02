@@ -9,7 +9,7 @@ class NetworkPage extends Component {
   constructor() {
     super();
     this.state = {
-      sortFilter: 'wp'
+      sortFilter: 'tp'
     };
   }
 
@@ -24,9 +24,7 @@ class NetworkPage extends Component {
       'tp': (a, b) => (b.hp + b.wp) - (a.hp + a.wp)
     }
 
-    // this.setState({sortFilter: 'wp'})
     const sorted = pointsAttendees.sort(sortLogic[this.state.sortFilter]).map(item => item.id)
-
 
     return (
       <div>
@@ -59,22 +57,6 @@ class NetworkPage extends Component {
               subCatMap={subCatMap}/>
             )
           })}
-
-          {/* {Object.keys(attendees).map((attendee_key) => (
-            <BusinessCard
-            id={`network_${attendees[attendee_key].id}`}
-            attendee={attendees[attendee_key]}
-            key={attendees[attendee_key].id}
-            categories={categories}
-            subCategories={subCategories}
-            profile={profile}
-            actions={actions}
-            catMap={catMap}
-            subCatMap={subCatMap}/>
-          ))} */}
-
-
-
 
         </CardDeck>
       </div>

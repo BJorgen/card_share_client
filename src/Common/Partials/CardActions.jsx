@@ -61,7 +61,7 @@ class CardActions extends Component {
     const actions = this.props.actions;
     return (
       <ButtonToolbar>
-        <Button onClick={() => actions.sendMessage(attendee.id, 'Hi I think we should chat')}> Messae </Button>
+        <Button onClick={() => actions.sendMessage(attendee.id, 'Hi I think we should chat')}> Message </Button>
         {cardActionsSend(attendee.id, attendee.cards, actions)}
         {cardActionsRecieved(attendee.id, attendee.cards, actions)}
         {connectionActions(attendee.id, attendee.connection, actions)}
