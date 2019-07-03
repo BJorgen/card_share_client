@@ -32,18 +32,31 @@ class Conversation extends Component {
       </form>
     );
 
-    
-
 
     const convoHeader = (
-      <ListItem button>
+      <ListItem>
         <ListItemAvatar>
           <Avatar alt="Remy Sharp" src={attendee.photo} />
         </ListItemAvatar>
-        <ListItemText primary={this.props.attendee.first_name} />
+        <ListItemText>
+          <Typography gutterBottom variant="h6" component="h2">
+            {this.props.attendee.first_name}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            timestamp
+          </Typography>
+        </ListItemText>
       </ListItem>
     )
     
+    const convoActionbox = (
+      <Card>
+        <CardActionArea>
+          {convoHeader}
+        </CardActionArea>
+      </Card>
+    )
+      
 
     const convoMessages = []
     conversation.forEach(message => {
@@ -58,7 +71,7 @@ class Conversation extends Component {
 
     return (
       <div id={`conversation_${attendee.id}`}>
-        <SimpleExpansionPanel header={convoHeader}>
+        <ConversationContainer header={convoHeader}>
         <div>
         {messageForm}
 
@@ -67,7 +80,7 @@ class Conversation extends Component {
             {convoMessages}
           </ul>
         
-        </SimpleExpansionPanel>
+        </ConversationContainer>
       </div>
     );
   }
