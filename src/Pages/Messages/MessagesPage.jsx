@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Container from '@material-ui/core/Container';
 import Conversation from './Conversation.jsx';
+import ConversationContainer from './ConversationContainer.jsx';
 
 class MessagesPage extends Component {
 
@@ -27,6 +28,7 @@ class MessagesPage extends Component {
               conversation={conversation} />
             )
           }})}
+          <ConversationContainer/>
         </Container>
 
     );

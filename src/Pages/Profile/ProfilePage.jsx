@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container';
 import Categories from './Categories.jsx';
 import Profile from './Profile.jsx';
 import ProfileForm from './ProfileForm.jsx';
@@ -18,7 +19,7 @@ class ProfilePage extends Component {
       );
     } else {
       return (
-        <div>
+        <Container>
           <h4>Attendee Profile</h4>
   
           <Profile profile={profile} 
@@ -29,17 +30,17 @@ class ProfilePage extends Component {
           subCatMap={subCatMap}/>
   
           <div>
-            <Button href="/editprofile">
+            <Button href="/editprofile" variant="outlined">
               Edit Profile
             </Button>
           </div>
           <div>
-            <Button href="/categoryselector">
+            <Button href="/categoryselector" variant="outlined">
               Select Topics
             </Button>
           </div>
   
-        </div>
+        </Container>
       );
     }
   }
