@@ -48,7 +48,9 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function FullScreenDialog() {
+export default function FullScreenDialog(props) {
+  const { profile, attendee, conversation, actions} = props;
+
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -60,6 +62,20 @@ export default function FullScreenDialog() {
     setOpen(false);
   }
 
+  function renderMessage(){
+    /*const side;
+    return (
+      <Box display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
+      <Box p={1} bgcolor="grey.300" borderRadius={10}>
+        <Typography variant="body2" color="textSecondary" component="p">
+          This is a bunch of content that I want to have so that I scan scroll through it in the page.
+        </Typography>
+      </Box>
+    </Box>
+    )
+    */
+  }
+
   return (
     <div>
 
@@ -68,15 +84,13 @@ export default function FullScreenDialog() {
           <ListItem>
             <ListItemAvatar>
               <Avatar
-                alt="Remy Sharp"
-                src={
-                  "https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg"
-                }
+                alt={attendee.first_name + (attendee.family_name || '')}
+                src={attendee.photo}
               />
             </ListItemAvatar>
             <ListItemText>
               <Typography gutterBottom variant="h6" component="h2">
-                Orange
+                {attendee.first_name + (attendee.family_name || '')}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
                 4h ago (11)
@@ -85,11 +99,6 @@ export default function FullScreenDialog() {
           </ListItem>
       </CardActionArea>
     </Card>
-
-
-
-
-
 
       <Dialog
         fullScreen
@@ -101,15 +110,13 @@ export default function FullScreenDialog() {
         <ListItem>
             <ListItemAvatar>
               <Avatar
-                alt="Remy Sharp"
-                src={
-                  "https://interactive-examples.mdn.mozilla.net/media/examples/grapefruit-slice-332-332.jpg"
-                }
+                alt={attendee.first_name + (attendee.family_name || '')}
+                src={attendee.photo}
               />
             </ListItemAvatar>
             <ListItemText>
               <Typography gutterBottom variant="h6">
-                Orange
+              {attendee.first_name + (attendee.family_name || '')}
               </Typography>
             </ListItemText>
           </ListItem>
@@ -124,153 +131,18 @@ export default function FullScreenDialog() {
         </DialogTitle>
 
         <DialogContent display="flex" dividers={scroll === "paper"}>
-
-          <Box display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                This is a bunch of content that I want to have so that I scan scroll through it in the page.
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                This is a bunch of content that I want to have so that I scan scroll through it in the page.
-              </Typography>           
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-start" pr={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                short
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                another short
-              </Typography>           
-            </Box>
-          </Box>
-          
-
-          <Box display="flex" justifyContent="flex-start" pr={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                talking to myself again
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                yes you are
-              </Typography>           
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                This is a bunch of content that I want to have so that I scan scroll through it in the page.
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                This is a bunch of content that I want to have so that I scan scroll through it in the page.
-              </Typography>           
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-start" pr={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                short
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                another short
-              </Typography>           
-            </Box>
-          </Box>
-          
-
-          <Box display="flex" justifyContent="flex-start" pr={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                talking to myself again
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                yes you are
-              </Typography>           
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                This is a bunch of content that I want to have so that I scan scroll through it in the page.
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                This is a bunch of content that I want to have so that I scan scroll through it in the page.
-              </Typography>           
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-start" pr={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                short
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                another short
-              </Typography>           
-            </Box>
-          </Box>
-          
-
-          <Box display="flex" justifyContent="flex-start" pr={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="grey.300" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                talking to myself again
-              </Typography>
-            </Box>
-          </Box>
-
-          <Box display="flex" justifyContent="flex-end" pl={3}  pt={1} bgcolor="background.paper">
-            <Box p={1} bgcolor="#82B1FF" borderRadius={10}>
-              <Typography variant="body2" color="textSecondary" component="p">
-                yes you are
-              </Typography>           
-            </Box>
-          </Box>
+          {conversation.map(message => {
+            const side = attendee.id = message.sender_id ? "flex-start" : "flex-end";
+            return (
+              <Box key={message.id} display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
+                <Box p={1} bgcolor="grey.300" borderRadius={10}>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {message.content}
+                  </Typography>
+                </Box>
+              </Box>
+            )
+          })}
 
         </DialogContent>
 

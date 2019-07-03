@@ -20,18 +20,28 @@ class MessagesPage extends Component {
             const conversation = messages[conversation_key]
             const attendee = attendees[conversation_key]
             return (
-              <Conversation
+              <ConversationContainer
+              key={attendee.id}
+              attendee={attendee}
+              profile={profile}
+              actions={actions}
+              conversation={conversation}
+              />
+            )
+              /*<Conversation
               key={attendee.id}
               attendee={attendee}
               profile={profile}
               actions={actions}
               conversation={conversation} />
-            )
+              
+                        <ConversationContainer/>
+          <ConversationContainer/>
+          <ConversationContainer/>*/
+            
           }})}
 
-          <ConversationContainer/>
-          <ConversationContainer/>
-          <ConversationContainer/>
+
         </Container>
     );
   }
