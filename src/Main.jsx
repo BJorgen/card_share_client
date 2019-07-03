@@ -41,8 +41,8 @@ class Main extends Component {
             subCatMap={subCatMap} />
           )}/>
           <Route path="/contacts" render={(routeProps) => (
-            <ContactsPage {...routeProps} actions={actions} attendees={attendees} catMap={catMap}
-            subCatMap={subCatMap} />
+            <ContactsPage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap}
+            subCatMap={subCatMap} pointsAttendees={pointsAttendees}/>
           )}/>
           <Route path="/editprofile" render={(routeProps) => (
             <ProfileForm {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} catMap={catMap}
