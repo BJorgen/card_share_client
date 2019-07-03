@@ -53,6 +53,13 @@ export default function FullScreenDialog(props) {
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  let textFieldValue = '';
+
+  function sendThisMessage() {
+    console.log('button cliecked')
+    actions.sendMessage(attendee.id, textFieldValue);
+    textFieldValue =''
+  }
 
   function handleClickOpen() {
     setOpen(true);
@@ -60,6 +67,10 @@ export default function FullScreenDialog(props) {
 
   function handleClose() {
     setOpen(false);
+  }
+
+  function textChange(event){
+    textFieldValue = event.target.value;
   }
 
   function renderMessage(){
@@ -149,6 +160,7 @@ export default function FullScreenDialog(props) {
         <DialogActions>
 
           <TextField
+            onChange={textChange}
             multiline={true}
             autoFocus={true}
             fullWidth={true}
@@ -156,7 +168,7 @@ export default function FullScreenDialog(props) {
             variant="outlined"
           />
 
-          <Button color="primary">Send</Button>
+          <Button onClick={() => sendThisMessage()} color="primary">Send</Button>
 
         </DialogActions>
       </Dialog>
