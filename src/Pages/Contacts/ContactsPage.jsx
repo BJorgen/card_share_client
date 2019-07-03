@@ -9,13 +9,11 @@ class ContactsPage extends Component {
 
   render(){
     const { attendees , categories, subCategories, profile, actions, catMap, subCatMap} = this.props;
-    console.log("Attendees: ", attendees);
 
     if (!attendees || typeof attendees !== 'object') return null
 
     // Returns an object with array of connected cards and 
     function filterSharedNetwork(shared){
-      console.log("shared: ", shared);
       const sharedCards = []
       {Object.keys(shared).map((attendee_key) => {
         if (attendees[attendee_key]) {
