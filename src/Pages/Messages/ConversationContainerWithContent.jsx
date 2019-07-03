@@ -143,9 +143,9 @@ export default function FullScreenDialog(props) {
 
         <DialogContent display="flex" dividers={scroll === "paper"}>
           {conversation.map(message => {
-            const side = attendee.id = message.sender_id ? "flex-start" : "flex-end";
+            const side = attendee.id === message.sender_id ? "flex-start" : "flex-end";
             return (
-              <Box key={message.id} display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
+              <Box key={message.id} display="flex" justifyContent={side} pr={3} pt={1} bgcolor="background.paper">
                 <Box p={1} bgcolor="grey.300" borderRadius={10}>
                   <Typography variant="body2" color="textSecondary" component="p">
                     {message.content}
@@ -158,7 +158,6 @@ export default function FullScreenDialog(props) {
         </DialogContent>
 
         <DialogActions>
-
           <TextField
             onChange={textChange}
             multiline={true}
@@ -166,10 +165,10 @@ export default function FullScreenDialog(props) {
             fullWidth={true}
             label="Message"
             variant="outlined"
+            defaultValue={textFieldValue}
           />
 
           <Button onClick={() => sendThisMessage()} color="primary">Send</Button>
-
         </DialogActions>
       </Dialog>
 

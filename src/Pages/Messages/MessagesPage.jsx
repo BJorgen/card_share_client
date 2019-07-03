@@ -26,6 +26,7 @@ class MessagesPage extends Component {
               profile={profile}
               actions={actions}
               conversation={conversation}
+              placeHolder = ''
               />
             )
               /*<Conversation
