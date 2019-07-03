@@ -203,7 +203,6 @@ function eventHandlers(App) {
 
     // I have changed my interests
     attendee_interests : function(msg){
-      console.log('i am here interest updates', App.state)
       msg=JSON.parse(msg);
       const attendee = App.state.attendee;
 
@@ -212,7 +211,6 @@ function eventHandlers(App) {
       attendee.wants = msg.wants;
       const {pointsAttendees, attendees} = calcAllTheStuff(attendee, App.state.attendees);
       App.setState({attendee, pointsAttendees, attendees});
-      console.log('from update interest', pointsAttendees, attendees, attendee)
       window.location.pathname = '/network'
     },
 

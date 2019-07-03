@@ -23,7 +23,7 @@ export default function SimpleExpansionPanel(props) {
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <h5>{props.title}</h5>
+          {props.header}
 
         </ExpansionPanelSummary>
 
