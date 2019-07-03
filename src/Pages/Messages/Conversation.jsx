@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
+import Avatar from '@material-ui/core/Avatar';
 import SimpleExpansionPanel from '../../Common/Partials/SimpleExpansionPanel.jsx'
+import ListItem from "@material-ui/core/ListItem";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 
 class Conversation extends Component {
 
@@ -26,9 +31,12 @@ class Conversation extends Component {
     );
 
     const convoHeader = (
-      <div>
-        <h5>{this.props.attendee.first_name}</h5>
-      </div>
+      <ListItem button>
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" src={attendee.photo} />
+        </ListItemAvatar>
+        <ListItemText primary={this.props.attendee.first_name} />
+      </ListItem>
     )
     
 
