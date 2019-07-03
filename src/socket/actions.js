@@ -73,7 +73,6 @@ module.exports = function(App) {
     },
   
     sendMessage(receiver_id, content){
-      console.log('sending message', receiver_id, content)
       App.state.connection.emit('send_message', JSON.stringify({receiver_id, content, event_id}));
     },
 

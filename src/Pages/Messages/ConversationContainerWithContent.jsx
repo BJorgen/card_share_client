@@ -7,9 +7,7 @@ import Slide from "@material-ui/core/Slide";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
-import Container from "@material-ui/core/Container";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Card from "@material-ui/core/Card";
@@ -56,7 +54,6 @@ export default function FullScreenDialog(props) {
   let textFieldValue = '';
 
   function sendThisMessage() {
-    console.log('button cliecked')
     actions.sendMessage(attendee.id, textFieldValue);
     textFieldValue =''
   }
@@ -71,20 +68,6 @@ export default function FullScreenDialog(props) {
 
   function textChange(event){
     textFieldValue = event.target.value;
-  }
-
-  function renderMessage(){
-    /*const side;
-    return (
-      <Box display="flex" justifyContent="flex-start" pr={3} pt={1} bgcolor="background.paper">
-      <Box p={1} bgcolor="grey.300" borderRadius={10}>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This is a bunch of content that I want to have so that I scan scroll through it in the page.
-        </Typography>
-      </Box>
-    </Box>
-    )
-    */
   }
 
   return (
