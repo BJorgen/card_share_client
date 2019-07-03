@@ -183,9 +183,9 @@ function eventHandlers(App) {
       const pointsAttendees = App.state.pointsAttendees;
       // NEED TO ADD POINTS DONE
       if(attendees[attendee.id]){
-        attendees[attendee.id].haves = attendee.haves;
-        attendees[attendee.id].wants = attendee.wants;
-        attendees[attendee.id].metaData = getAttendeePoints(attendee, App.state.attendee);
+        attendees[attendee.id].haves = attendee.haves.map(num => num.toString());
+        attendees[attendee.id].wants = attendee.wants.map(num => num.toString());
+        attendees[attendee.id].metaData = getAttendeePoints(attendees[attendee.id], App.state.attendee);
         let found = false;
         pointsAttendees.forEach(pointObj => {
           if(pointObj.id === attendee.id){
