@@ -25,21 +25,20 @@ class Conversation extends Component {
       </form>
     );
 
-
     const convoHeader = (
       <div>
         <h5>{this.props.attendee.first_name}</h5>
-        {messageForm}
       </div>
     )
     
 
     const convoMessages = []
     conversation.forEach(message => {
-      convoMessages.push(
+      convoMessages.unshift(
         <li key={message.id}>
           <p>from: {profile.id === message.sender_id ? profile.first_name : attendee.first_name}</p>
           <p>content: {message.content}</p>
+          <p>timestamp {message.created_at}</p>
         </li>
       )
     })
@@ -47,7 +46,10 @@ class Conversation extends Component {
     return (
       <div id={`conversation_${attendee.id}`}>
         <SimpleExpansionPanel header={convoHeader}>
+        <div>
+        {messageForm}
 
+        </div>
           <ul>
             {convoMessages}
           </ul>
