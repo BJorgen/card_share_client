@@ -11,20 +11,25 @@ class Conversation extends Component {
     function sendThisMessage(event) {
       event.preventDefault();
       const message = event.target['message'].value
+      event.target['message'].value = '';
       actions.sendMessage(attendee.id, message)
     }
+
+    const messageForm = (
+      <form onSubmit={sendThisMessage}>
+        <label>
+          Message:
+          <input type="text" name="message" />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
 
 
     const convoHeader = (
       <div>
         <h5>{this.props.attendee.first_name}</h5>
-        <form onSubmit={sendThisMessage}>
-          <label>
-            Message:
-            <input type="text" name="message" />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        {messageForm}
       </div>
     )
     
@@ -40,13 +45,15 @@ class Conversation extends Component {
     })
 
     return (
-      <SimpleExpansionPanel header={convoHeader}>
+      <div id={`conversation_${attendee.id}`}>
+        <SimpleExpansionPanel header={convoHeader}>
 
-      <ul>
-        {convoMessages}
-      </ul>
-      
-      </SimpleExpansionPanel>
+          <ul>
+            {convoMessages}
+          </ul>
+        
+        </SimpleExpansionPanel>
+      </div>
     );
   }
 }
