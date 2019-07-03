@@ -55,6 +55,12 @@ class NetworkPage extends Component {
 
     return (
       <div>
+        <SimpleExpansionPanel title={"Show My Connections"}>
+          <CardDeck>
+            {splitConnectedNetwork(sorted)['connected']}
+          </CardDeck>
+        </SimpleExpansionPanel>
+
         <h4>Event Network</h4>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
@@ -67,12 +73,6 @@ class NetworkPage extends Component {
             </ButtonGroup>
           </Grid>
         </Grid>
-
-        <SimpleExpansionPanel title={"Show My Connections"}>
-          <CardDeck>
-            {splitConnectedNetwork(sorted)['connected']}
-          </CardDeck>
-        </SimpleExpansionPanel>
         
         <CardDeck>
           {splitConnectedNetwork(sorted)['notConnected']}
