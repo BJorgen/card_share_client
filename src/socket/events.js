@@ -173,7 +173,13 @@ function eventHandlers(App) {
     },
 
     messages_load : function(msg){
-      JSON.parse(msg).forEach(message => addMessage(getOtherAttendeeId(message.sender_id, message.receiver_id, App.state.attendee.id), message));
+      const messages = {};
+      JSON.parse(msg).forEach(message => {
+        const attendee_id = getOtherAttendeeId(message.sender_id, message.receiver_id, App.state.attendee.id);
+        const messageObj = messages[attendee_id] ? messages[attendee_id].concat(message) : [message]
+        messages[attendee_id] = messageObj;
+      });
+      App.setState({messages});
     },
 
     // a person on the network has updated their interests
