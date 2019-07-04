@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import BusinessCard from '../../Common/BusinessCard.jsx';
-import CardDeck from 'react-bootstrap/CardDeck'
+import Container from '@material-ui/core/Container';
 
 class ContactsPage extends Component {
   constructor() {
@@ -40,11 +40,12 @@ class ContactsPage extends Component {
 
     return (
       <div>
-        <h4>Saved Contacts</h4>
-        
-        <CardDeck>
-          {filterSharedNetwork(attendees)}
-        </CardDeck>
+        <Container>
+          <h4>Saved Contacts</h4>
+          
+            {filterSharedNetwork(attendees)}
+
+        </Container>
 
       </div>
     );

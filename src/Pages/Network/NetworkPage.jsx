@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import BusinessCard from '../../Common/BusinessCard.jsx';
-import CardDeck from 'react-bootstrap/CardDeck'
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Container from '@material-ui/core/Container';
 import SimpleExpansionPanel from '../../Common/Partials/SimpleExpansionPanel.jsx'
 
 class NetworkPage extends Component {
@@ -57,27 +57,30 @@ class NetworkPage extends Component {
       <div>
 
         <SimpleExpansionPanel header={<h5>Show My Connections</h5>}>
-          <CardDeck>
+          <Container>
             {splitConnectedNetwork(sorted)['connected']}
-          </CardDeck>
+          </Container>
         </SimpleExpansionPanel>
-
-        <h4>Event Network</h4>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+        
+        <Container>
+          <h4 style={{marginTop: 20}}>Event Network</h4>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={6}>
+            </Grid>
+            <Grid item xs={12}>
+              <ButtonGroup fullWidth aria-label="Full width outlined button group" variant="contained" >
+                <Button onClick={() => this.setState({sortFilter: 'tp'})}>All</Button>
+                <Button onClick={() => this.setState({sortFilter: 'hp'})}>Haves</Button>
+                <Button onClick={() => this.setState({sortFilter: 'wp'})}>Wants</Button>
+              </ButtonGroup>
+            </Grid>
           </Grid>
-          <Grid item xs={12}>
-            <ButtonGroup fullWidth aria-label="Full width outlined button group" variant="contained" >
-              <Button onClick={() => this.setState({sortFilter: 'tp'})}>All</Button>
-              <Button onClick={() => this.setState({sortFilter: 'hp'})}>Haves</Button>
-              <Button onClick={() => this.setState({sortFilter: 'wp'})}>Wants</Button>
-            </ButtonGroup>
-          </Grid>
-        </Grid>
+        </Container>
 
-        <CardDeck>
+        <Container>
           {splitConnectedNetwork(sorted)['notConnected']}
-        </CardDeck>
+        </Container>
+
 
       </div>
     );
