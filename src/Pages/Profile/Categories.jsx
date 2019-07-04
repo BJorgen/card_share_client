@@ -5,6 +5,7 @@ import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Container from '@material-ui/core/Container';
 
 
 class Categories extends Component {
@@ -59,7 +60,7 @@ class Categories extends Component {
     }
 
     return (
-      <div>
+      <Container>
         <h4>Topics Selector</h4>
         <p>Select 5 of each haves and wants</p>
         <Accordion>
@@ -105,7 +106,7 @@ class Categories extends Component {
 
           </Form>
         </Accordion>
-      </div>
+      </Container>
     );
   }
 }

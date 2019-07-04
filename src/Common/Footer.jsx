@@ -12,7 +12,7 @@ function Footer() {
 
     return (
       <div id="footer">
-        <BottomNavigation value={value} onChange={handleChange}>
+        <BottomNavigation value={value} onChange={handleChange} id="footer-navbar">
           <BottomNavigationAction component={Link} style={{ textDecoration: 'none' }} to="/profile" label="Profile" value="profile" icon={<i className="fa fa-user"></i>} />
           <BottomNavigationAction component={Link} style={{ textDecoration: 'none' }} to="/contacts" label="Contacts" value="contacts" icon={<i className="fas fa-address-card"></i>} />
           <BottomNavigationAction component={Link} style={{ textDecoration: 'none' }} to="/network" label="Network" value="network" icon={<i className="fas fa-users"></i>} />

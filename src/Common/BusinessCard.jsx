@@ -10,6 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import clsx from "clsx";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
+import Box from "@material-ui/core/Box"
 
 
 
@@ -27,7 +28,8 @@ import CardContact from './Partials/CardContact.jsx';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 300
+    maxWidth: 300,
+    minWidth: 100
   },
   expand: {
     transform: "rotate(0deg)",
@@ -60,11 +62,11 @@ export default function BusinessCard(props) {
   function cardHeader() {
     if (attendee.last_name) {
       return (
-        <CardHeader title={attendee.first_name +" "+ attendee.last_name}/>
+        <CardHeader style={{paddingBottom: 0}} title={attendee.first_name +" "+ attendee.last_name}/>
       ); 
-    } else if (attendee.last_name){
+    } else if (attendee.first_name){
       return (
-        <CardHeader title={attendee.first_name}/>
+        <CardHeader style={{paddingBottom: 0}} title={attendee.first_name}/>
       ); 
     }
   }
@@ -76,7 +78,7 @@ export default function BusinessCard(props) {
         <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
           <Row>
             <Col xs={4} md={4}>
-              <Image src={attendee.photo} rounded width={120} height={120} alt="120x120"/>
+              <Image src={attendee.photo} rounded width={100} height={100} alt="120x120"/>
             </Col>
             <Col xs={8} md={8}>
               <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
@@ -124,24 +126,9 @@ export default function BusinessCard(props) {
     }
   }
 
-
-
-
-
-  return (
-    <Card id={id} style={{marginTop: 20}}>
-      {cardHeader()}
-
-      <CardContent>
-        {cardImageAndInterests()}
-        <Typography variant="body2" color="textSecondary" component="p">
-          {attendee.tagline}
-        </Typography>
-      </CardContent>
-
-
-      <CardActions disableSpacing>
-        {cardActionButtons()}
+  function showContactButton(){
+    if (attendee.last_name) {
+      return (
         <IconButton
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded
@@ -152,6 +139,31 @@ export default function BusinessCard(props) {
         >
           <ExpandMoreIcon />
         </IconButton>
+      ); 
+    }
+  }
+
+
+
+  return (
+    <Card id={id} style={{marginTop: 10, marginBottom: 10}}>
+      {cardHeader()}
+
+      <CardContent style={{paddingBottom: 0}} >
+        {cardImageAndInterests()}
+
+        <Box fontStyle="oblique" m={0} color="primary" align="center" >
+          <Typography style={{marginTop: 15}} color="primary" align="center" component="p">
+            {attendee.tagline}
+          </Typography>
+        </Box>
+ 
+      </CardContent>
+
+
+      <CardActions style={{paddingTop: 0}}>
+        {cardActionButtons()}
+        {showContactButton()}
       </CardActions>
 
       {contactInformation()}

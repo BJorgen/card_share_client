@@ -73,7 +73,7 @@ export default function FullScreenDialog(props) {
   return (
     <div>
 
-      <Card>
+      <Card style={{marginTop: 10}}>
       <CardActionArea onClick={handleClickOpen}>
           <ListItem>
             <ListItemAvatar>
@@ -87,7 +87,7 @@ export default function FullScreenDialog(props) {
                 {attendee.first_name + (attendee.family_name || '')}
               </Typography>
               <Typography variant="body2" color="textSecondary" component="p">
-                4h ago (11)
+                {conversation.length} messages
               </Typography>
             </ListItemText>
           </ListItem>
@@ -127,9 +127,10 @@ export default function FullScreenDialog(props) {
         <DialogContent display="flex" dividers={scroll === "paper"}>
           {conversation.map(message => {
             const side = attendee.id === message.sender_id ? "flex-start" : "flex-end";
+            const messageColor = attendee.id === message.sender_id ? "#e3f2fd" : "#eceff1";
             return (
               <Box key={message.id} display="flex" justifyContent={side} pr={3} pt={1} bgcolor="background.paper">
-                <Box p={1} bgcolor="grey.300" borderRadius={10}>
+                <Box p={1} bgcolor= {messageColor} borderRadius={10}>
                   <Typography variant="body2" color="textSecondary" component="p">
                     {message.content}
                   </Typography>

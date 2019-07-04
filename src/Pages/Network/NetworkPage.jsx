@@ -55,18 +55,9 @@ class NetworkPage extends Component {
 
     return (
       <div>
-
-        <SimpleExpansionPanel header={<h5>Show My Connections</h5>}>
-          <Container>
-            {splitConnectedNetwork(sorted)['connected']}
-          </Container>
-        </SimpleExpansionPanel>
-        
         <Container>
-          <h4 style={{marginTop: 20}}>Event Network</h4>
+          <h4>Event Network</h4>
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6}>
-            </Grid>
             <Grid item xs={12}>
               <ButtonGroup fullWidth aria-label="Full width outlined button group" variant="contained" >
                 <Button onClick={() => this.setState({sortFilter: 'tp'})}>All</Button>
@@ -81,6 +72,11 @@ class NetworkPage extends Component {
           {splitConnectedNetwork(sorted)['notConnected']}
         </Container>
 
+        <SimpleExpansionPanel header={<h5>Show My Connections</h5>}>
+          <Container>
+            {splitConnectedNetwork(sorted)['connected']}
+          </Container>
+        </SimpleExpansionPanel>
 
       </div>
     );
