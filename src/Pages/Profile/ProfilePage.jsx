@@ -28,18 +28,7 @@ class ProfilePage extends Component {
           actions={actions} 
           catMap={catMap} 
           subCatMap={subCatMap}/>
-  
-          <div>
-            <Button href="/editprofile" variant="outlined">
-              Edit Profile
-            </Button>
-          </div>
-          <div>
-            <Button href="/categoryselector" variant="outlined">
-              Select Topics
-            </Button>
-          </div>
-  
+
         </Container>
       );
     }
