@@ -3,7 +3,7 @@ import OAuth from './Oauth.jsx'
 
 
 function LoginButton(props) {
-  if(props.user){
+  if(props.attendee){
     return (<div onClick={props.logOut}> LogOut </div>);
   }
   else if (props.socket){

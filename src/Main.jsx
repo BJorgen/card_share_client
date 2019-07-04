@@ -73,7 +73,7 @@ class Main extends Component {
     return(
       <Switch>
         <Route path="/" render={(routeProps) => (
-          <Home {...routeProps} event={event} socket={socket} endpoint={this.props.endpoint}/>
+          <Home {...routeProps} attendee={this.props.attendee}  event={event} socket={socket} endpoint={this.props.endpoint}/>
         )}/>
       </Switch>
     );

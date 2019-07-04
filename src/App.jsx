@@ -58,7 +58,7 @@ class App extends Component {
     let modalClose = () => this.setState({ modalShow: false });
     return (
       <div>
-        <Header showNotifications={this.showNotifications} notifications={this.state.notifications} socket={this.state.connection} user={this.state.user} logOut={() =>this.logOut()} event={this.state.event} endpoint={this.state.endpoint}/>
+        <Header attendee={this.state.attendee} showNotifications={this.showNotifications} notifications={this.state.notifications} socket={this.state.connection} user={this.state.user} logOut={() =>this.logOut()} event={this.state.event} endpoint={this.state.endpoint}/>
         <div className="footer-fantom"></div>
         {/* <button onClick={() => this.initData() } > Get ALL </button> */}
 
