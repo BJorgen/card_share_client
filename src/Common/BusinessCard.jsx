@@ -43,7 +43,7 @@ class BusinessCard extends Component {
     function cardImageAndInterests() {
       if (attendee.photo) {
         return (
-          <Container>
+          <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
             <Row>
               <Col xs={4} md={4}>
                 <Image src={attendee.photo} rounded width={120} height={120} alt="120x120"/>
@@ -56,7 +56,7 @@ class BusinessCard extends Component {
         ); 
       } else {
         return (
-          <Container>
+          <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
             <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
         </Container>
         )
