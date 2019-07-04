@@ -149,24 +149,15 @@ export default function BusinessCard(props) {
 
       <CardContent>
         {cardImageAndInterests()}
-        <Typography variant="body2" color="textSecondary" component="p">
+        <Typography style={{marginTop: 20}} variant="caption" color="textSecondary" align="center" component="p">
           {attendee.tagline}
         </Typography>
       </CardContent>
 
 
       <CardActions disableSpacing>
-
-
-
         {cardActionButtons()}
-
-
         {showContactButton()}
-
-
-
-
       </CardActions>
 
       {contactInformation()}
