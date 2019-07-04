@@ -1,25 +1,13 @@
 import React, {Component} from 'react';
-
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-
-
-
-
+import CardActions from './Partials/CardActions.jsx';
+// import CardIcons from './Partials/CardIcons.jsx';
+import CardInterests from './Partials/CardInterests.jsx';
+import CardContact from './Partials/CardContact.jsx';
+import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Image from 'react-bootstrap/Image'
-
-
-
-
-import CardActionButtons from './Partials/CardActionButtons.jsx';
-import CardInterests from './Partials/CardInterests.jsx';
-import CardContact from './Partials/CardContact.jsx';
-
 
 class BusinessCard extends Component {
 
@@ -28,22 +16,21 @@ class BusinessCard extends Component {
     const id = this.props.id || Math.random();    
     
     function cardHeader() {
-      if (attendee.last_name) {
+      if (attendee.first_name) {
         return (
-          <CardHeader title={attendee.first_name +" "+ attendee.last_name}/>
-        ); 
-      } else if (attendee.last_name){
-        return (
-          <CardHeader title={attendee.first_name}/>
+          <Card.Header>
+            <Card.Title>
+              {attendee.first_name} {attendee.last_name}
+            </Card.Title>
+          </Card.Header>
         ); 
       }
     }
 
-
     function cardImageAndInterests() {
       if (attendee.photo) {
         return (
-          <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
+          <Container>
             <Row>
               <Col xs={4} md={4}>
                 <Image src={attendee.photo} rounded width={120} height={120} alt="120x120"/>
@@ -56,7 +43,7 @@ class BusinessCard extends Component {
         ); 
       } else {
         return (
-          <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
+          <Container>
             <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
         </Container>
         )
@@ -64,35 +51,31 @@ class BusinessCard extends Component {
     }
 
 
-    function cardActionButtons(){
+    function cardFooter(){
       if (!(attendee.id === profile.id)) {
         return (
-            <CardActionButtons actions={actions} attendee={attendee}/>
+          <Card.Footer>
+            <CardActions actions={actions} attendee={attendee}/>
+          </Card.Footer>
         ); 
       }
     }
 
 
-
-
-
     return (
-      <Card id={id} style={{marginTop: 20}}>
+      <Card id={id}>
         {cardHeader()}
 
-        <CardContent>
+        <Card.Body>
           {cardImageAndInterests()}
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Card.Text>
             {attendee.tagline}
-          </Typography>
-        </CardContent>
+          </Card.Text>
+          <CardContact attendee={attendee}/>
+        </Card.Body>
 
-        <CardContact attendee={attendee}/>
-
-        {cardActionButtons()}
-
+        {cardFooter()}
       </Card>
-
     );
   }
 }
