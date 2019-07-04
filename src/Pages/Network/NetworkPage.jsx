@@ -10,7 +10,8 @@ class NetworkPage extends Component {
   constructor() {
     super();
     this.state = {
-      sortFilter: 'tp'
+      sortFilter: 'tp',
+      showNetwork: 'connected'
     };
   }
 
@@ -18,6 +19,7 @@ class NetworkPage extends Component {
     const { attendees , categories, subCategories, profile, actions, catMap, subCatMap, pointsAttendees} = this.props;
 
     if (!attendees || typeof attendees !== 'object' || !pointsAttendees) return null
+
 
     const sortLogic = { 
       'hp': (a, b) => (b.hp - a.hp), 
@@ -31,6 +33,7 @@ class NetworkPage extends Component {
     function splitConnectedNetwork(sorted){
       const connected = []
       const notConnected = []
+      const allNetwork =[]
       {sorted.map((attendee_key) => {
         if (attendees[attendee_key]) {
           const attendee = attendees[attendee_key]
@@ -45,11 +48,12 @@ class NetworkPage extends Component {
             actions={actions}
             catMap={catMap}
             subCatMap={subCatMap}/>
-      
-          if(isConnected) {connected.push(card)} else {notConnected.push(card)}
+            
+            allNetwork.push(card)
+            if(isConnected) {connected.push(card)} else {notConnected.push(card)}
         }
       })}
-      return {connected, notConnected}
+      return {connected, notConnected, allNetwork}
     }
 
 
@@ -57,26 +61,37 @@ class NetworkPage extends Component {
       <div>
         <Container>
           <h4>Event Network</h4>
+
+
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <ButtonGroup fullWidth aria-label="Full width outlined button group" variant="contained" >
-                <Button onClick={() => this.setState({sortFilter: 'tp'})}>All</Button>
+
+                <Button onClick={() => this.setState({showNetwork: 'connected'})}>Connected</Button>
+                <Button onClick={() => this.setState({showNetwork: 'notConnected'})}>Other</Button>
+                <Button onClick={() => this.setState({showNetwork: 'allNetwork'})}>All</Button>
+              </ButtonGroup>
+            </Grid>
+          </Grid>
+
+
+          <Grid container spacing={3}>
+            <Grid item xs={12}>
+              <ButtonGroup fullWidth aria-label="Full width outlined button group" variant="contained" >
+                <Button onClick={() => this.setState({sortFilter: 'tp'})}>Both</Button>
                 <Button onClick={() => this.setState({sortFilter: 'hp'})}>Haves</Button>
                 <Button onClick={() => this.setState({sortFilter: 'wp'})}>Wants</Button>
               </ButtonGroup>
             </Grid>
           </Grid>
+
+
         </Container>
 
         <Container>
-          {splitConnectedNetwork(sorted)['notConnected']}
+          {splitConnectedNetwork(sorted)[this.state.showNetwork]}
         </Container>
 
-        <SimpleExpansionPanel header={<h5>Show My Connections</h5>}>
-          <Container>
-            {splitConnectedNetwork(sorted)['connected']}
-          </Container>
-        </SimpleExpansionPanel>
 
       </div>
     );
