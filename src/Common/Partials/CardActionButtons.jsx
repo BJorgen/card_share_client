@@ -76,8 +76,8 @@ function cardActionsRecieved(attendee_id, cards, actions) {
 }
 
 
-function messageAction(attendee, cards, actions) {
-  if (cards){
+function messageAction(attendee, actions) {
+  if (attendee){
     if(attendee && attendee.connection && attendee.connection.status === 'CONNECTED') {
       return (
           <Tooltip title="Message">
@@ -107,7 +107,7 @@ class CardActions extends Component {
         {connectionActions(attendee.id, attendee.connection, actions)}
         {cardActionsSend(attendee.id, attendee.cards, actions)}
         {cardActionsRecieved(attendee.id, attendee.cards, actions)}
-        {messageAction(attendee, attendee.cards, actions)}
+        {messageAction(attendee,  actions)}
       </div>
     );
   }
