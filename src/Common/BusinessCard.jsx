@@ -11,25 +11,17 @@ import clsx from "clsx";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import IconButton from "@material-ui/core/IconButton";
 import Box from "@material-ui/core/Box"
-
-
-
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Image from 'react-bootstrap/Image'
-
-
-
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
+import CardMedia from '@material-ui/core/CardMedia';
 
 import CardActionButtons from './Partials/CardActionButtons.jsx';
 import CardInterests from './Partials/CardInterests.jsx';
-import CardContact from './Partials/CardContact.jsx';
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 300,
-    minWidth: 100
+    // maxWidth: 400,
+    // minWidth: 100
   },
   expand: {
     transform: "rotate(0deg)",
@@ -75,22 +67,22 @@ export default function BusinessCard(props) {
   function cardImageAndInterests() {
     if (attendee.photo) {
       return (
-        <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
-          <Row>
-            <Col xs={4} md={4}>
-              <Image src={attendee.photo} rounded width={100} height={100} alt="120x120"/>
-            </Col>
-            <Col xs={8} md={8}>
+        <div style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
+          <Grid container spacing={3}>
+            <Grid item xs={4}>
+              <CardMedia image={attendee.photo} style={{width: "100px", height: "100px"}}/>
+            </Grid>
+            <Grid item xs={8}>
               <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
-            </Col>
-          </Row>
-        </Container>
+            </Grid>
+          </Grid>
+        </div>
       ); 
     } else {
       return (
-        <Container style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
+        <div style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
           <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
-      </Container>
+      </div>
       )
     }
   }
@@ -146,7 +138,7 @@ export default function BusinessCard(props) {
 
 
   return (
-    <Card id={id} style={{marginTop: 10, marginBottom: 10}}>
+    <Card className={classes.card} id={id} style={{marginTop: 10, marginBottom: 10}}>
       {cardHeader()}
 
       <CardContent style={{paddingBottom: 0}} >
