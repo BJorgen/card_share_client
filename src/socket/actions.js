@@ -103,7 +103,7 @@ module.exports = function(App) {
       if(! App.state.attendee){
         App.getAttendee();
       }
-      if(! (this.state.categories && this.state.subCategories) ){
+      if(! (App.state.categories && App.state.subCategories) ){
         App.getCategories();
       }
       if(! App.state.attendees){
@@ -116,6 +116,14 @@ module.exports = function(App) {
       const notifications = App.state.notifications;
       delete notifications[id];
       App.setState({notifications});
+    },
+
+    initMessageIfNotExist(attendee_id){
+      if(! App.state.messages[attendee_id]){
+        const messages = App.state.messages;
+        messages[attendee_id] = [];
+        App.setState({messages})
+      }
     }
   }
 }

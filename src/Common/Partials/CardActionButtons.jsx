@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import IconButton from "@material-ui/core/IconButton";
 import Tooltip from "@material-ui/core/Tooltip";
-
+import { Link } from 'react-router-dom';
 
 const messageIcon = (<i className="fas fa-comment-alt"></i>);
 
@@ -81,7 +81,15 @@ function messageAction(attendee, cards, actions) {
     if(attendee && attendee.connection && attendee.connection.status === 'CONNECTED') {
       return (
           <Tooltip title="Message">
-            <IconButton size="small" onClick={() => actions.sendMessage(attendee.id, 'Hi I think we should chat')}> {messageIcon}</IconButton>
+            <Link 
+                                 onClick={() => actions.initMessageIfNotExist(attendee.id)}
+                                 to={{
+                                  pathname:`/messages`,
+                                }}
+                              >
+<IconButton size="small">{messageIcon}</IconButton>
+                              </Link>
+            
           </Tooltip>
       );
     } 
