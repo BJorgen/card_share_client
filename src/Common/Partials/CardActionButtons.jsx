@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Button from 'react-bootstrap/Button'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+
 
 
 function connectionActions(attendee_id, connection, actions) {
@@ -14,10 +14,10 @@ function connectionActions(attendee_id, connection, actions) {
     return (<span>DECLINED</span>);
   } else if(attendee_id === connection.sender) {
     return (
-      <ButtonToolbar>
+      <div>
         <Button onClick={() => actions.acceptConnection(attendee_id)} variant="outline-success" size="sm">Accept</Button>
         <Button onClick={() => actions.ignoreConnection(attendee_id)} variant="outline-danger" size="sm">Ignore</Button>
-      </ButtonToolbar>
+      </div>
     )
   } else {
     return (<span>PENDING CONNECTION</span>)
@@ -39,10 +39,10 @@ function cardActionsRecieved(attendee_id, cards, actions) {
     const from = cards.from;
     if(from === 'PENDING') {
       return (
-        <ButtonToolbar>
-        <Button onClick={() => actions.saveCard(attendee_id)} variant="outline-success" size="sm">Save</Button>
-        <Button onClick={() => actions.deleteCard(attendee_id)} variant="outline-danger" size="sm">Delete</Button>
-      </ButtonToolbar>
+        <div>
+          <Button onClick={() => actions.saveCard(attendee_id)} variant="outline-success" size="sm">Save</Button>
+          <Button onClick={() => actions.deleteCard(attendee_id)} variant="outline-danger" size="sm">Delete</Button>
+        </div>
       );
     } else if (cards.from === 'SAVED') {
       return (
@@ -60,15 +60,16 @@ class CardActions extends Component {
     const attendee = this.props.attendee;
     const actions = this.props.actions;
     return (
-      <ButtonToolbar>
+      <div>
         <Button onClick={() => actions.sendMessage(attendee.id, 'Hi I think we should chat')}> Message </Button>
         {cardActionsSend(attendee.id, attendee.cards, actions)}
         {cardActionsRecieved(attendee.id, attendee.cards, actions)}
         {connectionActions(attendee.id, attendee.connection, actions)}
-      </ButtonToolbar>
+      </div>
     );
   }
 }
 
 export default CardActions;
+
 

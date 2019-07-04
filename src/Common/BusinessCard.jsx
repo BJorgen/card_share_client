@@ -124,7 +124,22 @@ export default function BusinessCard(props) {
     }
   }
 
-
+  function showContactButton(){
+    if (attendee.last_name) {
+      return (
+        <IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="Show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+      ); 
+    }
+  }
 
 
 
@@ -141,17 +156,17 @@ export default function BusinessCard(props) {
 
 
       <CardActions disableSpacing>
+
+
+
         {cardActionButtons()}
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="Show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
+
+
+        {showContactButton()}
+
+
+
+
       </CardActions>
 
       {contactInformation()}
