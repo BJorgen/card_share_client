@@ -6,9 +6,8 @@ import Col from 'react-bootstrap/Col';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Star from '@material-ui/icons/Star';
 import orange from '@material-ui/core/colors/orange';
-import { flexbox } from '@material-ui/system';
-import Card from "@material-ui/core/Card";
-
+import grey from '@material-ui/core/colors/grey';
+import Tooltip from '@material-ui/core/Tooltip';
 
 class CardInterests extends Component {
 
@@ -19,16 +18,9 @@ class CardInterests extends Component {
       fontWeight : 'bold',
       textAlign : 'center',
     }
-    let icon;
-    if(requests.includes(String(offer.id))){
-      
-      icon =  <Star htmlColor={orange[500]} />
-    }else{
-      icon =  <Star />
-    }
     return (
     <Col style={divStyle}> 
-      {icon}
+       <Star htmlColor={requests.includes(String(offer.id)) ? orange[500] : grey[500]} />
       <br/>
       {offer.name}
     </Col>
@@ -40,14 +32,14 @@ class CardInterests extends Component {
   generateRatingsWOLabel(offer, requests){
     var divStyle = {
       padding: '0px',
-      fontSize: '50%',
       fontWeight : 'bold',
       textAlign : 'center',
     }
-    let type = requests.includes(String(offer.id)) ? "text-warning fa fa-star" : "fa fa-star"
     return (
     <Col style={divStyle}> 
-      <span class="float-right"><i title={offer.name} class={type}></i></span>   
+      <Tooltip title={offer.name}>
+      <Star fontSize='small' htmlColor={requests.includes(String(offer.id)) ? orange[500] : grey[500]} /> 
+      </Tooltip>
     </Col>
 
     )
