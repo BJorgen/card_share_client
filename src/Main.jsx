@@ -54,7 +54,7 @@ class Main extends Component {
 
           <Route exact path="/" render={(routeProps) => (
             <NetworkPage {...routeProps} profile={profile} categories={categories} subCategories={subCategories} actions={actions} attendees={attendees} catMap={catMap}
-            subCatMap={subCatMap} />
+            subCatMap={subCatMap} pointsAttendees={pointsAttendees}/>
           )}/>
         </Switch>
       </main>
