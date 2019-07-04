@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import Card from 'react-bootstrap/Card';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
+import Container from '@material-ui/core/Container';
 
 class ProfileForm extends Component {
 
@@ -24,7 +24,7 @@ class ProfileForm extends Component {
     }
 
     return (
-      <div>
+      <Container>
         <h4>Update Profile</h4>
         <Card>
 
@@ -68,7 +68,7 @@ class ProfileForm extends Component {
             
           </Card.Body>
         </Card>
-      </div>
+      </Container>
       
     );
   }

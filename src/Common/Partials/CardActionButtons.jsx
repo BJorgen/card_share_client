@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import IconButton from "@material-ui/core/IconButton";
+import Tooltip from "@material-ui/core/Tooltip";
 
 
 const messageIcon = (<i className="fas fa-comment-alt"></i>);
@@ -8,7 +9,7 @@ const addContactIcon = (<i className="fas fa-user-plus"></i>);
 const acceptContactIcon = (<i style={{color: "Green"}} className="fas fa-user-plus"></i>);
 const minusContactIcon = (<i className="fas fa-user-times"></i>);
 const pendingContactIcon = (<i style={{color: "Orange"}} className="fas fa-link"></i>);
-const declineContactIcon = (<i style={{color: "#FF4500"}} className="fas un-fa-link"></i>);
+const declinedContactIcon = (<i style={{color: "#FF4500"}} className="fas un-fa-link"></i>);
 const linkIcon = (<i style={{color: "#4CAF50"}} className="fas fa-link"></i>);
 
 
@@ -20,21 +21,27 @@ const deleteIcon = (<i className="fas fa-trash-alt"></i>);
 function connectionActions(attendee_id, connection, actions) {
   if (!connection) {
     return (
-      <IconButton onClick={() => actions.requestConnection(attendee_id)} variant="outline-success" size="sm">{addContactIcon}</IconButton>
+      <Tooltip title="Request Connection">
+        <IconButton size="small" onClick={() => actions.requestConnection(attendee_id)}>{addContactIcon}</IconButton>
+      </Tooltip>
     );
   } else if(connection.status === 'CONNECTED') {
-    return <IconButton>{linkIcon}</IconButton>
+    return <Tooltip title="Connected"><IconButton size="small">{linkIcon}</IconButton></Tooltip>
   } else if(connection.status === 'DECLINED') {
-    return (<span>DECLINED</span>);
+    return (<Tooltip title="Declined Connection"><IconButton size="small">{declinedContactIcon}</IconButton></Tooltip>);
   } else if(attendee_id === connection.sender) {
     return (
       <div>
-        <IconButton onClick={() => actions.acceptConnection(attendee_id)} variant="outline-success" size="sm">{acceptContactIcon}</IconButton>
-        <IconButton onClick={() => actions.ignoreConnection(attendee_id)} variant="outline-danger" size="sm">{minusContactIcon}</IconButton>
+        <Tooltip title="Accept Connection">
+          <IconButton size="small" onClick={() => actions.acceptConnection(attendee_id)}>{acceptContactIcon}</IconButton>
+        </Tooltip>
+        <Tooltip title="Decline Connection">
+          <IconButton size="small" onClick={() => actions.ignoreConnection(attendee_id)}>{minusContactIcon}</IconButton>
+        </Tooltip>
       </div>
     )
   } else {
-    return (<IconButton>{pendingContactIcon}</IconButton>)
+    return (<Tooltip title="Pending Connection"><IconButton size="small">{pendingContactIcon}</IconButton></Tooltip>)
   }
 }
 
@@ -42,7 +49,9 @@ function connectionActions(attendee_id, connection, actions) {
 function cardActionsSend(attendee_id, cards, actions) {
   if (!cards || cards.to !== 'SENT') {
     return (
-      <IconButton onClick={() => actions.sendCard(attendee_id)} variant="outline-success" size="sm">{sendCardIcon}</IconButton>
+      <Tooltip title="Send Card">
+        <IconButton size="small" onClick={() => actions.sendCard(attendee_id)}>{sendCardIcon}</IconButton>
+      </Tooltip>
     );
     
   }
@@ -54,14 +63,30 @@ function cardActionsRecieved(attendee_id, cards, actions) {
     if(from === 'PENDING') {
       return (
         <div>
-          <IconButton onClick={() => actions.saveCard(attendee_id)} variant="outline-success" size="sm">{saveCardIcon}</IconButton>
-          <IconButton onClick={() => actions.deleteCard(attendee_id)} variant="outline-danger" size="sm">{deleteIcon}</IconButton>
+          <Tooltip title="Save Card">
+            <IconButton size="small" onClick={() => actions.saveCard(attendee_id)}>{saveCardIcon}</IconButton>
+          </Tooltip>
+          <Tooltip title="Delete Card">
+            <IconButton size="small" onClick={() => actions.deleteCard(attendee_id)}>{deleteIcon}</IconButton>
+          </Tooltip>
         </div>
       );
     } 
   }
 }
 
+
+function messageAction(attendee, cards, actions) {
+  if (cards){
+    if(attendee && attendee.connection && attendee.connection.status === 'CONNECTED') {
+      return (
+          <Tooltip title="Message">
+            <IconButton size="small" onClick={() => actions.sendMessage(attendee.id, 'Hi I think we should chat')}> {messageIcon}</IconButton>
+          </Tooltip>
+      );
+    } 
+  }
+}
 
 
 class CardActions extends Component {
@@ -74,7 +99,7 @@ class CardActions extends Component {
         {connectionActions(attendee.id, attendee.connection, actions)}
         {cardActionsSend(attendee.id, attendee.cards, actions)}
         {cardActionsRecieved(attendee.id, attendee.cards, actions)}
-        <IconButton onClick={() => actions.sendMessage(attendee.id, 'Hi I think we should chat')}> {messageIcon}</IconButton>
+        {messageAction(attendee, attendee.cards, actions)}
       </div>
     );
   }
