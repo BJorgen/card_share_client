@@ -52,10 +52,12 @@ export default function FullScreenDialog(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   let textFieldValue = '';
+  let textField = null;
 
   function sendThisMessage() {
     actions.sendMessage(attendee.id, textFieldValue);
     textFieldValue =''
+    textField.value =''
   }
 
   function handleClickOpen() {
@@ -67,6 +69,9 @@ export default function FullScreenDialog(props) {
   }
 
   function textChange(event){
+    if(! textField){
+      textField = event.target;
+    }
     textFieldValue = event.target.value;
   }
 

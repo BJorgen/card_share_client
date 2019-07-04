@@ -11,7 +11,7 @@ class NetworkPage extends Component {
     super();
     this.state = {
       sortFilter: 'tp',
-      showNetwork: 'connected'
+      showNetwork: 'allNetwork'
     };
   }
 
