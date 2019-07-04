@@ -9,6 +9,7 @@ function LoginButton(props) {
   else if (props.socket){
     return (
       <OAuth
+      option={props.option}
       provider='linkedin'
       socket={props.socket}
       event={props.event}
