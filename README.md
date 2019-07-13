@@ -5,9 +5,15 @@ The app was build using React, Node.js, Socket.io, PostgreSQL, MaterialUI and ut
 
 ## Getting Started
 ### Start up React Server
-clone the [server repo](https://github.com/venetrius/card_share)
-install dependencies ```npm install```
-start server ```npm start```
+* clone the [server repo](https://github.com/venetrius/card_share)
+* install dependencies 
+```
+npm install
+```
+* start server 
+```
+npm start
+```
 
 #### Database Setup
 1. Set up a pg database
@@ -33,8 +39,8 @@ knex seed:run
 - To undo the last migration that was run: `knex migrate:down`
 
 ### Start up Client Server
-clone this repo for the client side server
-install dependencies 
+* clone this repo for the client side server
+* install dependencies 
 ```
 npm install
 ```
@@ -42,7 +48,7 @@ start server
 ```
 npm start
 ```
-open a web browser at http://localhost:3000/
+* open a web browser at http://localhost:3000/
 
 ## Dependencies
 ### React Server Dependencies
