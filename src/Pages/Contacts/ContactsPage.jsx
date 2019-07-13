@@ -3,9 +3,6 @@ import BusinessCard from '../../Common/BusinessCard.jsx';
 import Container from '@material-ui/core/Container';
 
 class ContactsPage extends Component {
-  constructor() {
-    super();
-  }
 
   render(){
     const { attendees , categories, subCategories, profile, actions, catMap, subCatMap} = this.props;
@@ -15,7 +12,7 @@ class ContactsPage extends Component {
     // Returns an object with array of connected cards and 
     function filterSharedNetwork(shared){
       const sharedCards = []
-      {Object.keys(shared).map((attendee_key) => {
+      Object.keys(shared).forEach((attendee_key) => {
         if (attendees[attendee_key]) {
           const attendee = attendees[attendee_key]
           const isShared = attendee.connection && attendee.cards && (attendee.cards.from === 'SAVED')
@@ -32,7 +29,7 @@ class ContactsPage extends Component {
       
           if(isShared) {sharedCards.push(card)}
         }
-      })}
+      });
       return sharedCards
     }
     filterSharedNetwork(attendees)

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Categories from './Categories.jsx';
 import Profile from './Profile.jsx';

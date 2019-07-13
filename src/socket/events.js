@@ -97,7 +97,7 @@ function eventHandlers(App) {
 
   const calcAllTheStuff = function(profile, attendees){
     let pointsAttendees = []
-    Object.keys(attendees).map((id) => {
+    Object.keys(attendees).forEach((id) => {
       attendees[id].metaData = getAttendeePoints(attendees[id], profile)
       pointsAttendees.push({...attendees[id].metaData, id : id})      
     })

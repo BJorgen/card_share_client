@@ -10,10 +10,10 @@ class Home extends Component {
     return (
       <Container>
         <div>
-          <img src={lhlLogo} style={{width:"50%", paddingLeft:5}}/>
+          <img src={lhlLogo} alt='' style={{width:"50%", paddingLeft:5}}/>
           <h2>Demo Day</h2>
           <h5>July 4, 2019</h5>
-          <img src={dogPhoto} style={{width:"100%", paddingTop:20, paddingBottom: 20}}/>
+          <img src={dogPhoto} alt='' style={{width:"100%", paddingTop:20, paddingBottom: 20}}/>
           <div style={{display: 'flex'}}>
             <h6 style={{paddingRight:10, paddingTop: 3}}>Login with LinkedIn: </h6> 
             <LoginButton option='login' attendee={this.props.attendee}  socket={this.props.socket} event={this.props.event} endpoint={this.props.endpoint}/>
