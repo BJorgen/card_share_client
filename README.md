@@ -46,32 +46,32 @@ open a web browser at http://localhost:3000/
 
 ## Dependencies
 ### React Server Dependencies
-cookie-session
-dotenv
-express
-express-socket.io-session
-knex
-passport
-passport-linkedin-oauth2
-pg
-socket.io
+* cookie-session
+* dotenv
+* express
+* express-socket.io-session
+* knex
+* passport
+* passport-linkedin-oauth2
+* pg
+* socket.io
 
 ### React Server DevDependencies
-morgan
-nodemon
+* morgan
+* nodemon
 
 ### Client Side Dependencies
-@material-ui/core
-@material-ui/icons
-bootstrap
-react
-react-bootstrap
-react-dom
-react-fontawesome
-react-router-dom
-react-scripts
-socket.io-client
-styled-components
+* @material-ui/core
+* @material-ui/icons
+* bootstrap
+* react
+* react-bootstrap
+* react-dom
+* react-fontawesome
+* react-router-dom
+* react-scripts
+* socket.io-client
+* styled-components
 
 ## Screenshots
 ### Login Profile
@@ -93,8 +93,7 @@ styled-components
 <img src=public/screenshots/network-connected.png>
 
 ### Message Page
-<img src=public/screenshots/message-page.png>
+<img src=public/screenshots/messages-page.png>
 
 ### Messaging
 <img src=public/screenshots/messaging.png>
-## Card Share Client
