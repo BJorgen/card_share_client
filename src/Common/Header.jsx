@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-import MenuIcon from '@material-ui/icons/Menu';
+//import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 const useStyles = makeStyles(theme => ({
@@ -29,9 +29,10 @@ function Header(props) {
 
   const isMenuOpen = Boolean(anchorEl);
 
-  function handleProfileMenuOpen(event) {
+ /* function handleProfileMenuOpen(event) {
     setAnchorEl(event.currentTarget);
   }
+  */
 
   function handleMenuClose() {
     setAnchorEl(null);
@@ -57,16 +58,6 @@ function Header(props) {
     <div className={classes.grow}>
       <AppBar color="primary" className={classes.colorPrimary}>
         <Toolbar>
-          <IconButton
-            edge="end"
-            aria-label="Account of current user"
-            aria-controls={menuId}
-            aria-haspopup="true"
-            onClick={handleProfileMenuOpen}
-            color="inherit"
-          >
-            <MenuIcon className={classes.menuButton}/>
-          </IconButton>
 
           <Typography className={classes.title} variant="h6" noWrap>
             LHL Demo Day

@@ -47,15 +47,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 export default function FullScreenDialog(props) {
-  const { profile, attendee, conversation, actions} = props;
+  const { attendee, conversation, actions} = props;
 
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   let textFieldValue = '';
+  let textField = null;
 
   function sendThisMessage() {
     actions.sendMessage(attendee.id, textFieldValue);
     textFieldValue =''
+    textField.value =''
   }
 
   function handleClickOpen() {
@@ -67,6 +69,9 @@ export default function FullScreenDialog(props) {
   }
 
   function textChange(event){
+    if(! textField){
+      textField = event.target;
+    }
     textFieldValue = event.target.value;
   }
 
@@ -130,7 +135,7 @@ export default function FullScreenDialog(props) {
             const messageColor = attendee.id === message.sender_id ? "#e3f2fd" : "#eceff1";
             return (
               <Box key={message.id} display="flex" justifyContent={side} pr={3} pt={1} bgcolor="background.paper">
-                <Box p={1} bgcolor= {messageColor} borderRadius={10}>
+                <Box p={1} bgcolor={messageColor} borderRadius={10}>
                   <Typography variant="body2" color="textSecondary" component="p">
                     {message.content}
                   </Typography>

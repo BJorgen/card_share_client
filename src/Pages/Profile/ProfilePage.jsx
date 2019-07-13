@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Categories from './Categories.jsx';
 import Profile from './Profile.jsx';
@@ -28,18 +27,7 @@ class ProfilePage extends Component {
           actions={actions} 
           catMap={catMap} 
           subCatMap={subCatMap}/>
-  
-          <div>
-            <Button href="/editprofile" variant="outlined">
-              Edit Profile
-            </Button>
-          </div>
-          <div>
-            <Button href="/categoryselector" variant="outlined">
-              Select Topics
-            </Button>
-          </div>
-  
+
         </Container>
       );
     }

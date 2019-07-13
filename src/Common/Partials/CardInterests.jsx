@@ -19,7 +19,7 @@ class CardInterests extends Component {
       textAlign : 'center',
     }
     return (
-    <Col style={divStyle}> 
+    <Col key={offer.name} style={divStyle}> 
        <Star htmlColor={requests.includes(String(offer.id)) ? orange[500] : grey[500]} />
       <br/>
       {offer.name}
@@ -36,7 +36,7 @@ class CardInterests extends Component {
       textAlign : 'center',
     }
     return (
-    <Col style={divStyle}> 
+    <Col key={offer.name} style={divStyle}> 
       <Tooltip title={offer.name}>
       <Star fontSize='small' htmlColor={requests.includes(String(offer.id)) ? orange[500] : grey[500]} /> 
       </Tooltip>
