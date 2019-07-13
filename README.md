@@ -75,10 +75,10 @@ styled-components
 
 ## Screenshots
 ### Login Profile
-<img src=public/screenshots/basic-profile.png>
+<img src=public/screenshots/profile-setup.png>
 
 ### Topics Selector
-<img src=public/screenshots/basic-profile.png>
+<img src=public/screenshots/topic-selector.png>
 
 ### Basic Profile
 <img src=public/screenshots/basic-profile.png>
