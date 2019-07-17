@@ -5,6 +5,8 @@ The app was build using React, Node.js, Socket.io, PostgreSQL, MaterialUI and ut
 
 ## Getting Started
 ### Start up React Server
+Currently deployed on Heroku at https://smart-linxz.herokuapp.com/ or
+
 * clone the [server repo](https://github.com/venetrius/card_share)
 * install dependencies 
 ```
