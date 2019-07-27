@@ -48,7 +48,7 @@ class CardInterests extends Component {
   render(){
     // const {categories , subCategories, attendee, profile, catMap, subCatMap} = this.props
     const {attendee, profile, catMap, subCatMap} = this.props
-    const showString = !(attendee && attendee.first_name)
+    const showString = true || !(attendee && attendee.first_name) // TODO refactor this file
     let userInfo;
 
     if (attendee) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import './BusinessCard.css'
 
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -138,6 +139,58 @@ export default function BusinessCard(props) {
 
 
   return (
+    <div className="flip-card" style={{marginTop: 10, marginBottom: 10}}>
+    <div className="flip-card-inner">
+      <div className="flip-card-front">
+        <Card className={classes.card} id={id} style={{marginTop: 10, marginBottom: 10}}>
+          <CardContent style={{paddingBottom: 0}} >
+            {cardHeader()}
+            <div style={{marginLeft:'0px', marginRight:'0px', padding : '0px'}}>
+              <CardInterests attendee={attendee} profile={profile} categories={categories} subCategories={subCategories} catMap={catMap} subCatMap={subCatMap}/>
+            </div>
+            <Box fontStyle="oblique" m={0} color="primary" align="center" >
+              <Typography style={{marginTop: 15}} color="primary" align="center" component="p">
+                {attendee.tagline}
+              </Typography>
+            </Box>
+          </CardContent>
+          <CardActions style={{paddingTop: 0}}>
+            {cardActionButtons()}
+            {showContactButton()}
+          </CardActions>
+        </Card>
+      </div>
+      <div className="flip-card-back">
+        <Card className={classes.card} id={id} style={{marginTop: 10, marginBottom: 10}}>
+            <CardContent style={{paddingBottom: 0}} >
+              {cardHeader()}
+              <Grid container spacing={3}>
+                <Grid item xs={4}>
+                  <CardMedia image={attendee.photo} style={{width: "100px", height: "100px"}}/>
+                </Grid>
+                <Grid item xs={8}>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {attendee.position}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {attendee.company}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    {attendee.email_address}
+                  </Typography>
+                </Grid>
+              </Grid>
+            </CardContent>
+            <CardActions style={{paddingTop: 0}}>
+              {cardActionButtons()}
+              {showContactButton()}
+            </CardActions>
+          </Card>
+      </div>
+    </div>
+  </div>
+    );
+    /*
     <Card className={classes.card} id={id} style={{marginTop: 10, marginBottom: 10}}>
       {cardHeader()}
 
@@ -162,6 +215,6 @@ export default function BusinessCard(props) {
 
     </Card>
 
-  );
+  ); */
 }
 
